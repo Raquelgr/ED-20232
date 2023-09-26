@@ -1,0 +1,1 @@
+Trabalhos e práticas da disciplina de Estrutura de Dados, do semestre 2023/2. 
