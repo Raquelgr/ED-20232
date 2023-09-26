@@ -1,0 +1,22 @@
+- Em uma análise inicial, notamos que devido ao ponteiro 'buf' ser declarado porém não ser inicializado, apontando para um endereço de memória desconhecido que causa uma falha no programa quando a função "sprintf" tenta escrever nesse buffer na memória.
+
+- Análise com GDB
+Breakpoint 1, main () at c19.c:28
+28    	printSum();
+(gdb) next
+enter a number:
+8
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7c8f757 in __GI__IO_str_overflow (fp=0x7fffffffdcc0, c=115) at ./libio/strops.c:133
+
+- Solução
+Inicializar o ponteiro
+
+- Análise da correção
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+enter a number:
+8
+sum=36
+[Inferior 1 (process 16825) exited normally]

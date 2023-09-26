@@ -1,0 +1,63 @@
+- Em uma análise inicial, notamos que problema é na função 'resizeArray', o ponteiro dPtr recebe o atributo data
+do array e é realocado para apontar para um novo bloco de memória, mas não atualiza o ponteiro 'data' da scruct '_List'.
+Isso significa que mesmo após a realocação de memória, o ponteiro data ainda aponta para o bloco de memória mais antigo.
+Além disso, também é bom checarmos se o ponteiro dPtr não é nulo para sabermos se o realloc foi feito com sucesso ou não
+
+- Analise com Valgrind
+==35537== Memcheck, a memory error detector
+==35537== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==35537== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==35537== Command: ./c6
+==35537==
+==35537== Invalid free() / delete / delete[] / realloc()
+==35537==	at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35537==	by 0x109215: main (in /home/italo/Desktop/pa03/c6)
+==35537==  Address 0x4a96090 is 0 bytes inside a block of size 40 free'd
+==35537==	at 0x484DCD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35537==	by 0x1091B4: resizeArray (in /home/italo/Desktop/pa03/c6)
+==35537==	by 0x109202: main (in /home/italo/Desktop/pa03/c6)
+==35537==  Block was alloc'd at
+==35537==	at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35537==	by 0x1091EC: main (in /home/italo/Desktop/pa03/c6)
+==35537==
+==35537==
+==35537== HEAP SUMMARY:
+==35537== 	in use at exit: 60 bytes in 1 blocks
+==35537==   total heap usage: 3 allocs, 3 frees, 116 bytes allocated
+==35537==
+==35537== 60 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==35537==	at 0x484DCD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35537==	by 0x1091B4: resizeArray (in /home/italo/Desktop/pa03/c6)
+==35537==	by 0x109202: main (in /home/italo/Desktop/pa03/c6)
+==35537==
+==35537== LEAK SUMMARY:
+==35537==	definitely lost: 60 bytes in 1 blocks
+==35537==	indirectly lost: 0 bytes in 0 blocks
+==35537==  	possibly lost: 0 bytes in 0 blocks
+==35537==	still reachable: 0 bytes in 0 blocks
+==35537==     	suppressed: 0 bytes in 0 blocks
+==35537==
+==35537== For lists of detected and suppressed errors, rerun with: -s
+==35537== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+
+- Solução
+Chegar se dPtr não é nulo, e depois implementar na função 'resizeArray' o ponteiro 'array->data = dPtr', para que
+o ponteiro data do array aponte para o novo endereço de memória de dPtr
+
+- Análise da correção
+==36069== Memcheck, a memory error detector
+==36069== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==36069== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==36069== Command: ./c6correto
+==36069==
+01234
+0123456789
+==36069==
+==36069== HEAP SUMMARY:
+==36069== 	in use at exit: 0 bytes in 0 blocks
+==36069==   total heap usage: 4 allocs, 4 frees, 1,140 bytes allocated
+==36069==
+==36069== All heap blocks were freed -- no leaks are possible
+==36069==
+==36069== For lists of detected and suppressed errors, rerun with: -s
+==36069== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

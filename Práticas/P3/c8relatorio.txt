@@ -1,0 +1,42 @@
+- Em uma análise inicial, notamos que alocamos todas as alocações e o for foram feitos para 27 posições, exceto o realloc
+
+- Analise com Valgrind
+==39605== Memcheck, a memory error detector
+==39605== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==39605== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==39605== Command: ./c8
+==39605==
+==39605== Invalid read of size 1
+==39605==	at 0x1091D2: main (in /home/italo/Desktop/pa03/c8)
+==39605==  Address 0x4a960ba is 0 bytes after a block of size 26 alloc'd
+==39605==	at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==39605==	by 0x1091B1: main (in /home/italo/Desktop/pa03/c8)
+==39605==
+==39605==
+==39605== HEAP SUMMARY:
+==39605== 	in use at exit: 0 bytes in 0 blocks
+==39605==   total heap usage: 2 allocs, 2 frees, 53 bytes allocated
+==39605==
+==39605== All heap blocks were freed -- no leaks are possible
+==39605==
+==39605== For lists of detected and suppressed errors, rerun with: -s
+==39605== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+
+- Solução
+Realocar 27 posições
+
+- Análise da correção
+==39753== Memcheck, a memory error detector
+==39753== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==39753== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==39753== Command: ./c8correto
+==39753==
+==39753==
+==39753== HEAP SUMMARY:
+==39753== 	in use at exit: 0 bytes in 0 blocks
+==39753==   total heap usage: 2 allocs, 2 frees, 54 bytes allocated
+==39753==
+==39753== All heap blocks were freed -- no leaks are possible
+==39753==
+==39753== For lists of detected and suppressed errors, rerun with: -s
+==39753== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

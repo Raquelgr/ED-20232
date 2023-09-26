@@ -1,0 +1,5 @@
+1 - Avaliando apenas o código, creio que a parte mais custosa será a multiplicação de matrizes, pois são três for aninhados, o que dá uma complexidade O3.
+
+6.1 - Analisando os resultados, o programa não parece estar consumindo uma quantidade muito grande de memória visto que foi fornecida uma matriz 5x5. O uso total de memória não está muito especificado nos resultados fornecidos, mas não há evidências de que o programa esteja alocando uma quantidade excessiva de memória em relação ao tamanho da cache.
+6.2 - As matrizes
+6.3 - Os trechos das funções inicializaMatrizAleatoria e multiplicaMatrizes

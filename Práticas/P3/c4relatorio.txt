@@ -1,0 +1,20 @@
+- Em uma análise inicial, podemos notar que o programa está com problema de segmentation fault (que pode ser um vazamento de memória ou que estamos tentando acessar uma posição da memória inválida)
+Nesse caso específico, estamos tentando acessar uma posição de memória inválida dos atributos rows, col e data da struct Matrix antes de colocarmos uma quantidade de memória pra struct Matrix acessar, o que acaba causando o erro de memória inválida
+
+- Análise com GDB
+Breakpoint 1, main () at c4.c:13
+13    rotation3D->rows=4;
+(gdb) display rotation3D->rows
+1: rotation3D->rows = <error: Cannot access memory at address 0x0>
+(gdb) next
+
+Program received signal SIGSEGV, Segmentation fault.
+
+- Solução
+Alocar dinamicamente memória primeiramente a rotation3D e depois disso atribuir valores às propriedades a rows, cols e data
+Retirar o ' free(text) ', pois estamos tentando desalocar uma memória de um ponteiro que nem foi alocado dinamicamente
+
+- Análise da correção
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 7110) exited normally]

@@ -1,0 +1,41 @@
+- Em uma análise inicial, podemos notar o erro de alocação, são alocadas 10 posições
+porém o for vai até 11.
+
+- Analise com Valgrind
+==12555== Memcheck, a memory error detector
+==12555== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==12555== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==12555== Command: ./c1
+==12555==
+==12555== Invalid write of size 4
+==12555==	at 0x1091B8: main (c1.c:9)
+==12555==  Address 0x4a96068 is 0 bytes after a block of size 40 alloc'd
+==12555==	at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==12555==	by 0x109185: main (c1.c:6)
+==12555==
+==12555==
+==12555== HEAP SUMMARY:
+==12555== 	in use at exit: 0 bytes in 0 blocks
+==12555==   total heap usage: 1 allocs, 1 frees, 40 bytes allocated
+==12555==
+==12555== All heap blocks were freed -- no leaks are possible
+==12555==
+==12555== For lists of detected and suppressed errors, rerun with: -s
+==12555== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+
+- Solução
+Alocar 11 posições
+
+- Análise da correção
+==12310== Memcheck, a memory error detector
+==12310== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==12310== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==12310== Command: ./c1correto
+==12310==
+==12310==
+==12310== HEAP SUMMARY:
+==12310== 	in use at exit: 0 bytes in 0 blocks
+==12310==   total heap usage: 1 allocs, 1 frees, 44 bytes allocated
+==12310==
+==12310== All heap blocks were freed -- no leaks are possible
+==12310==

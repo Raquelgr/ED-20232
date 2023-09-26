@@ -1,0 +1,36 @@
+- Em uma análise inicial, notamos que alocamos dinamicamente 8 bytes pro ponteiro 'msg', o qual depois passamos uma string de 9 caracteres, excedendo o limite de memória alocado para o ponteiro.
+Além disso, temos que considerar o '\0' no final da string por padrão que determina o final do texto, com isso estouramos o limite da memória alocada para o ponteiro 'msg'
+
+Por fim, precisamos desalocar a memória que foi alocada dinamicamente.
+
+- Análise com GDB
+(gdb) print msg[0]
+$3 = 82 'R'
+(gdb) print msg[1]
+$4 = 111 'o'
+(gdb) print msg[2]
+$5 = 108 'l'
+(gdb) print msg[3]
+$6 = 98 'b'
+(gdb) print msg[4]
+$7 = 101 'e'
+(gdb) print msg[5]
+$8 = 114 'r'
+(gdb) print msg[6]
+$9 = 116 't'
+(gdb) print msg[7]
+$10 = 111 'o'
+(gdb) print msg[8]
+$11 = 110 'n'
+(gdb) print msg[9]
+$12 = 0 '\000'
+
+- Solução
+Alocar 10 bytes para o ponteiro ao invés de 8, já que a palavra vai de 0 até 9 contanto o último caracter ( \0 ).
+Desalocar a memória que foi alocada dinamicamente através da função: free(msg);
+
+- Análise da correção
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+12144, Rolberton
+[Inferior 1 (process 12144) exited normally]

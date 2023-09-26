@@ -1,0 +1,67 @@
+- Em uma análise inicial, notamos que estamos realizando um loop infinito, em que alocamos dinamicamente um bloco de memória de 128 bytes a variável p e imprimimos o valor do ponteiro sem nenhuma condição de parada.
+Além disso, estamos basicamente consumindo MUITA memória do sistema e não está sendo desalocado nada.
+
+- Análise com GDB
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main () at c10.c:9
+9                	p = malloc(128);
+(gdb) next
+10                	printf("%ld\n", (long)p);
+(gdb) next
+93824992252576
+9                	p = malloc(128);
+(gdb) next
+
+Breakpoint 1, main () at c10.c:9
+9                	p = malloc(128);
+(gdb) next
+10                	printf("%ld\n", (long)p);
+(gdb) next
+93824992253760
+9                	p = malloc(128);
+(gdb) next
+
+Breakpoint 1, main () at c10.c:9
+9                	p = malloc(128);
+
+- Solução
+Retirar o loop infinito e desalocar a memória
+
+- Análise da correção
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+[Inferior 1 (process 9341) exited normally]

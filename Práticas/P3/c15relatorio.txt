@@ -1,0 +1,49 @@
+- Em uma análise inicial, notamos que dentro do loop da função main, em cada iteração a variável 'a' vai ter sempre o valor 2, pois o problema é que a cada iteração atribuímos o valor 1 a ela e chamamos a função "inc()" para somar.
+A soma não é feita adequadamente justamente por cada iteração sempre voltarmos o valor da variável 'a' para 1 dentro do loop.
+
+- Análise com GDB
+8   	int main(int argc, char** argv) {
+	(gdb) next
+	9     	for(int i=1; i < 5; i++) {
+	(gdb) next
+	10       	int a = 1;
+	(gdb) display a
+	1: a = 0
+	(gdb) next
+	11       	a = inc(a);
+	1: a = 1
+	(gdb) next
+	9     	for(int i=1; i < 5; i++) {
+	(gdb) next
+	10       	int a = 1;
+	1: a = 2
+	(gdb) next
+	11       	a = inc(a);
+	1: a = 1
+	(gdb) next
+	9     	for(int i=1; i < 5; i++) {
+	(gdb) next
+	10       	int a = 1;
+	1: a = 2
+	(gdb) next
+	11       	a = inc(a);
+	1: a = 1
+	(gdb) next
+	9     	for(int i=1; i < 5; i++) {
+	(gdb) next
+	10       	int a = 1;
+	1: a = 2
+	(gdb) next
+	11       	a = inc(a);
+	1: a = 1
+
+- Solução
+Declarar e inicializar a variável 'a' fora do loop dentro da main.
+
+- Análise da correção
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+2
+3
+4
+5
