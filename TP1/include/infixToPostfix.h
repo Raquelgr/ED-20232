@@ -1,12 +1,20 @@
+#ifndef INFIXTOPOSTFIX_H
+#define INFIXTOPOSTFIX_H
+
 #include <iostream>
+#include <sstream>
+#include <string>
+
+#include <funcoes.h>
 
 using namespace std;
 
-class InfixToPostfix {
-    public:
+class InfixToPostfix : public Funcoes {
+    private:
         string CleanSpaces(string str);
-        bool IsOperator(char caracter);
-        int Priority(char op);
-        int CheckPriority(char first, char second);
+    
+    public:
         string ConvertToPostfix(string formula, string valoracao);
 };
+
+#endif

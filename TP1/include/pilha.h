@@ -1,3 +1,6 @@
+#ifndef PILHA_H
+#define PILHA_H
+
 #include <iostream>
 
 class TipoCelula {
@@ -31,6 +34,6 @@ class Pilha {
         bool Vazia() {
             return tamanho == 0;
         }
-
-    
 };
+
+#endif

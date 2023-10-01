@@ -1,12 +1,4 @@
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <sstream>
-
-#include <getopt.h>
 #include <pilha.h>
-
-using namespace std;
 
 TipoCelula::TipoCelula() {
     prox = nullptr;

@@ -1,10 +1,11 @@
-#include <fstream>
 #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 
 #include <getopt.h>
+
 #include <infixToPostfix.h>
+#include <avaliacao.h>
 
 using namespace std;
 
@@ -19,6 +20,9 @@ int main(int argc, char* argv[]) {
 
   InfixToPostfix conversao;
   string posfixa;
+
+  Avaliacao avaliacao;
+  char resultadoAvaliacao;
 
   while ((opt = getopt(argc, argv, "as::")) != EOF) {
     switch (opt) {
@@ -43,6 +47,10 @@ int main(int argc, char* argv[]) {
   }
 
   posfixa = conversao.ConvertToPostfix(formula, valoracao);
+
+  resultadoAvaliacao = avaliacao.Avaliar(posfixa);
+
+  cout << resultadoAvaliacao << endl;
 
   return 0;
 }
