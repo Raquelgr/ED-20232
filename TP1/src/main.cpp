@@ -4,8 +4,7 @@
 #include <sstream>
 
 #include <getopt.h>
-
-// #include <caixas_de_entrada.h>
+#include <infixToPostfix.h>
 
 using namespace std;
 
@@ -17,6 +16,9 @@ int main(int argc, char* argv[]) {
 
   bool ehAvaliacao = false;
   bool ehSatisfabilidade = false;
+
+  InfixToPostfix conversao;
+  string posfixa;
 
   while ((opt = getopt(argc, argv, "as::")) != EOF) {
     switch (opt) {
@@ -40,10 +42,7 @@ int main(int argc, char* argv[]) {
     valoracao = argv[optind];
   }
 
-  cout << "Avaliacao" << ehAvaliacao << endl;
-  cout << "Satisf" << ehSatisfabilidade << endl;
-  cout << "Formula" << formula << endl;
-  cout << "Valoracao" << valoracao << endl;
+  posfixa = conversao.ConvertToPostfix(formula, valoracao);
 
   return 0;
 }
