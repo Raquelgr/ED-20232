@@ -13,8 +13,10 @@ class InfixToPostfix : public Funcoes {
     private:
         string CleanSpaces(string str);
     
-    public:
+    protected:
         string ConvertToPostfix(string formula, string valoracao);
+
+    friend class Avaliacao;
 };
 
 #endif

@@ -4,7 +4,6 @@
 
 #include <getopt.h>
 
-#include <infixToPostfix.h>
 #include <avaliacao.h>
 
 using namespace std;
@@ -18,9 +17,6 @@ int main(int argc, char* argv[]) {
   bool ehAvaliacao = false;
   bool ehSatisfabilidade = false;
 
-  InfixToPostfix conversao;
-  string posfixa;
-
   Avaliacao avaliacao;
   char resultadoAvaliacao;
 
@@ -33,22 +29,17 @@ int main(int argc, char* argv[]) {
         ehSatisfabilidade = true;
         break;
       default:
+        cout << "OPCAO INVALIDA!";
         break;
     }
   }
 
-  if (optind < argc) {
-    formula = argv[optind];
-    optind++;
-  } 
+  formula = argv[2];
+  //TODO: validar tamanho
+  valoracao = argv[3];
+  //TODO: validar tamanho
 
-  if (optind < argc) {
-    valoracao = argv[optind];
-  }
-
-  posfixa = conversao.ConvertToPostfix(formula, valoracao);
-
-  resultadoAvaliacao = avaliacao.Avaliar(posfixa);
+  resultadoAvaliacao = avaliacao.Avaliar(formula, valoracao);
 
   cout << resultadoAvaliacao << endl;
 

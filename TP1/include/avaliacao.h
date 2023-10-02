@@ -11,7 +11,7 @@ using namespace std;
 
 class Avaliacao : public Funcoes {
     public:
-        char Avaliar(string formulaPosfixa);
+        char Avaliar(string formula, string valoracao);
 };
 
 #endif
