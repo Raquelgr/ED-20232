@@ -1,5 +1,5 @@
 CC := g++
-CCFLAGS := -O3 -std=c++17 -fPIC
+CCFLAGS := -O3 -std=c++11 -fPIC
 LDFLAGS := 
 CCOBJFLAGS := $(CCFLAGS) -c
 

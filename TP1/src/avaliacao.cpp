@@ -1,12 +1,58 @@
 #include <pilha.h>
-#include <infixToPostfix.h>
 #include <avaliacao.h>
 
-char Avaliacao::Avaliar(string formula, string valoracao) {
-    InfixToPostfix conversao;
-    string formulaPosfixa;
+string Avaliacao::RemoverEspacos(string str) {
+    string stringLimpa = "";
 
-    formulaPosfixa = conversao.ConvertToPostfix(formula, valoracao);
+    for(int i = 0; str[i]; i++) {
+        if (str[i] != ' ') {
+            stringLimpa += str[i];
+        }
+    }
+
+    return stringLimpa; 
+}
+
+string Avaliacao::ConverterInfixaParaPosfixa(string formula, string valoracao) {
+    Pilha* pilhaDeConversao = new Pilha();
+    
+    string formulaLimpa = RemoverEspacos(formula);
+    string posfixa;
+
+    for(int i = 0; i < formulaLimpa.length(); i++) {    
+        char caracter = formulaLimpa[i];
+
+        if(IsNotOperator(caracter)) {
+            int posicao = caracter - 48;
+            //TODO: se a posicao não existir no array, dar erro
+            posfixa += valoracao[posicao];
+        } else if(caracter == '(') {
+            pilhaDeConversao->Empilha('(');
+        } else if (caracter == ')') {
+            while(pilhaDeConversao->GetValorTopo() != '(') {
+                posfixa += pilhaDeConversao->Desempilha();
+            }
+
+            pilhaDeConversao->Desempilha();
+        } else {
+            while(!pilhaDeConversao->Vazia() && CheckPriority(caracter, pilhaDeConversao->GetValorTopo())) {
+                posfixa += pilhaDeConversao->Desempilha();
+            }
+
+            pilhaDeConversao->Empilha(caracter);
+        }
+
+    }
+
+    while(!pilhaDeConversao->Vazia()) {
+        posfixa += pilhaDeConversao->Desempilha();
+    }
+
+    return posfixa;
+}
+
+char Avaliacao::Avaliar(string formula, string valoracao) {
+    string formulaPosfixa = ConverterInfixaParaPosfixa(formula, valoracao);
 
     Pilha* pilhaDeAvaliacao = new Pilha();
 

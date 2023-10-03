@@ -10,6 +10,10 @@
 using namespace std;
 
 class Avaliacao : public Funcoes {
+    private:
+        string RemoverEspacos(string str);
+        string ConverterInfixaParaPosfixa(string formula, string valoracao);
+        
     public:
         char Avaliar(string formula, string valoracao);
 };
