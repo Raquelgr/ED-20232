@@ -1,4 +1,4 @@
-#include <funcoes.h>
+#include <funcoes.hpp>
 
 bool Funcoes::IsNot(char caracter) {
     if(caracter == '~') {

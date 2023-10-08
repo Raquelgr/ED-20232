@@ -4,7 +4,7 @@
 
 #include <getopt.h>
 
-#include <avaliacao.h>
+#include <avaliacao.hpp>
 
 using namespace std;
 

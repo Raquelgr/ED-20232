@@ -1,5 +1,5 @@
-#ifndef PILHA_H
-#define PILHA_H
+#ifndef PILHA_HPP
+#define PILHA_HPP
 
 #include <iostream>
 

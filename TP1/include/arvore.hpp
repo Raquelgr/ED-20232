@@ -1,5 +1,5 @@
-#ifndef ARVORE_H
-#define ARVORE_H
+#ifndef ARVORE_HPP
+#define ARVORE_HPP
 
 #include <iostream>
 #include <sstream>

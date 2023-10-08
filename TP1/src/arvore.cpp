@@ -1,10 +1,10 @@
-#include <arvore.h>
+#include <arvore.hpp>
 
 
-ideias: são no max 5 variaveis que podem ser e ou a, posso fazer um if tranquilamente....
-pra cada um desses ifs, faço as variações =D
-tem que pensar nas chaves que serão usadas, e na saída tb
-como vou saber quando usar o 'a'? vou ter que avaliar a expressao e ver se foi igual?
+// ideias: são no max 5 variaveis que podem ser e ou a, posso fazer um if tranquilamente....
+// pra cada um desses ifs, faço as variações =D
+// tem que pensar nas chaves que serão usadas, e na saída tb
+// como vou saber quando usar o 'a'? vou ter que avaliar a expressao e ver se foi igual?
 
 
 

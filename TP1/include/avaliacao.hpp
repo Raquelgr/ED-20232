@@ -1,11 +1,11 @@
-#ifndef AVALIACAO_H
-#define AVALIACAO_H
+#ifndef AVALIACAO_HPP
+#define AVALIACAO_HPP
 
 #include <iostream>
 #include <sstream>
 #include <string>
 
-#include <funcoes.h>
+#include <funcoes.hpp>
 
 using namespace std;
 

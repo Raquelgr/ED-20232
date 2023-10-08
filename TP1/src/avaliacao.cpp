@@ -1,5 +1,5 @@
-#include <pilha.h>
-#include <avaliacao.h>
+#include <pilha.hpp>
+#include <avaliacao.hpp>
 
 string Avaliacao::RemoverEspacos(string str) {
     string stringLimpa = "";

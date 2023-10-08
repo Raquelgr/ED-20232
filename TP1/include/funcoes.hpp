@@ -1,5 +1,5 @@
-#ifndef FUNCOES_H
-#define FUNCOES_H
+#ifndef FUNCOES_HPP
+#define FUNCOES_HPP
 
 #include <iostream>
 #include <sstream>
