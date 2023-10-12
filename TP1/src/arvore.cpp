@@ -15,13 +15,10 @@ Arvore::~Arvore() {
 }
 
 void Arvore::Insere(string item) {
-    cout << "oi";
     InsereRecursivo(raiz, item);
 }
 
 void Arvore::InsereRecursivo(TipoNo* &p, string item) {
-        cout << "oi";
-
     if(p == nullptr) {
         p = new TipoNo();
         p->item = item;
@@ -29,15 +26,15 @@ void Arvore::InsereRecursivo(TipoNo* &p, string item) {
     
     for (int i = 0; i < item.length(); i++) {
         if(!(isdigit(item[i]))) {
-            //Define o pai 
-            p->esq->pai = p;
-            p->dir->pai = p;
-
             string valoracaoEsq = item.replace(i, 1, "0");
             InsereRecursivo(p->esq, valoracaoEsq);
 
             string valoracaoDir = item.replace(i, 1, "1");
             InsereRecursivo(p->dir, valoracaoDir);
+
+            //Define o pai 
+            p->esq->pai = p;
+            p->dir->pai = p;
         }
     }
 }

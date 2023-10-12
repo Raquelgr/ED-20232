@@ -16,7 +16,7 @@
 
 void Satisfabilidade::CriaArvore(string formula, string valoracao) {
     Arvore* arvoreDeExpressoes = new Arvore();
-
+    
     arvoreDeExpressoes->Insere(valoracao);
 
     arvoreDeExpressoes->CaminhaPosOrdem(arvoreDeExpressoes->raiz);

@@ -24,8 +24,6 @@ int main(int argc, char* argv[]) {
   Satisfabilidade satisfabilidade;
   //char resultadoAvaliacao;
 
-  cout << "oi";
-
   while ((opt = getopt(argc, argv, "as::")) != EOF) {
     switch (opt) {
       case 'a':
@@ -40,26 +38,21 @@ int main(int argc, char* argv[]) {
     }
   }
 
-    cout << "oi";
-
 
   //TODO: validar tamanho
   formula = argv[2];
 
   //TODO: validar tamanho
   valoracao = argv[3];
-  cout << "oi";
+
   if (ehAvaliacao) {
     resultadoAvaliacao = avaliacao.Avaliar(formula, valoracao);
-  cout << "oi1";
 
     cout << resultadoAvaliacao << endl;
   }
   
 
   if (ehSatisfabilidade) {
-      cout << "oi2";
-
     satisfabilidade.CriaArvore(formula, valoracao);
   }
 
