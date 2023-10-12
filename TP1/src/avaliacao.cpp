@@ -4,7 +4,7 @@
 string Avaliacao::RemoverEspacos(string str) {
     string stringLimpa = "";
 
-    for(int i = 0; str[i]; i++) {
+    for(int i = 0; i < str.length(); i++) {
         if (str[i] != ' ') {
             stringLimpa += str[i];
         }

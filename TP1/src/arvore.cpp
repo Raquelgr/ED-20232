@@ -1,20 +1,7 @@
 #include <arvore.hpp>
 
-
-// ideias: são no max 5 variaveis que podem ser e ou a, posso fazer um if tranquilamente....
-// pra cada um desses ifs, faço as variações =D
-// tem que pensar nas chaves que serão usadas, e na saída tb
-// como vou saber quando usar o 'a'? vou ter que avaliar a expressao e ver se foi igual?
-
-
-
-
-
-
-
-
 TipoNo::TipoNo() {
-    //item.SetChave(-1);
+    pai = nullptr;
     esq = nullptr;
     dir = nullptr;
 }
@@ -35,12 +22,19 @@ void Arvore::InsereRecursivo(TipoNo* &p, string item) {
     if(p == nullptr) {
         p = new TipoNo();
         p->item = item;
-    } else {
-        //TODO: como comparar o que maior e o que é menor?
-        if(item < p->item) {
-            InsereRecursivo(p->esq, item);
-        } else {
-            InsereRecursivo(p->dir, item);
+    } 
+    
+    for (int i = 0; i < item.length(); i++) {
+        if(!(isdigit(item[i]))) {
+            //Define o pai 
+            p->esq->pai = p;
+            p->dir->pai = p;
+
+            string valoracaoEsq = item.replace(i, 1, "0");
+            InsereRecursivo(p->esq, valoracaoEsq);
+
+            string valoracaoDir = item.replace(i, 1, "1");
+            InsereRecursivo(p->dir, valoracaoDir);
         }
     }
 }
@@ -49,8 +43,17 @@ void Arvore::CaminhaPosOrdem(TipoNo *p) {
     if(p != nullptr) {
         CaminhaPosOrdem(p->esq);
         CaminhaPosOrdem(p->dir);
-        //p->item.Imprime();
+        cout << p->item << endl;
     }
+}
+
+TipoNo* Arvore::EncontraFolha(TipoNo *p) {
+    if(p->esq != null && p->dir != null) {
+        EncontraFolha(p->esq);
+        EncontraFolha(p->dir);
+    }
+
+    return p;
 }
 
 void Arvore::Limpa() {

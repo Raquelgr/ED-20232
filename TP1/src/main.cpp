@@ -5,6 +5,7 @@
 #include <getopt.h>
 
 #include <avaliacao.hpp>
+#include <satisfabilidade.hpp>
 
 using namespace std;
 
@@ -20,6 +21,9 @@ int main(int argc, char* argv[]) {
   Avaliacao avaliacao;
   char resultadoAvaliacao;
 
+  Satisfabilidade satisfabilidade;
+  //char resultadoAvaliacao;
+
   while ((opt = getopt(argc, argv, "as::")) != EOF) {
     switch (opt) {
       case 'a':
@@ -34,14 +38,22 @@ int main(int argc, char* argv[]) {
     }
   }
 
+  //TODO: validar tamanho
   formula = argv[2];
+
   //TODO: validar tamanho
   valoracao = argv[3];
-  //TODO: validar tamanho
 
-  resultadoAvaliacao = avaliacao.Avaliar(formula, valoracao);
+  if (ehAvaliacao) {
+    resultadoAvaliacao = avaliacao.Avaliar(formula, valoracao);
 
-  cout << resultadoAvaliacao << endl;
+    cout << resultadoAvaliacao << endl;
+  }
+  
+
+  if (ehSatisfabilidade) {
+    satisfabilidade.CriaArvore(formula, valoracao);
+  }
 
   return 0;
 }

@@ -13,9 +13,9 @@ class TipoNo {
     
     private:
         string item;
+        TipoNo *pai;
         TipoNo *esq;
         TipoNo *dir;
-    
     friend class Arvore;
 };
 
@@ -31,6 +31,7 @@ class Arvore {
         void Insere(string item);
         void CaminhaPosOrdem(TipoNo *p);
         void Limpa();
+        TipoNo* Arvore::EncontraFolha(TipoNo *p);
 
         TipoNo *raiz;
 };

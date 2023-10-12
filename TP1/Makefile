@@ -10,7 +10,7 @@ SRC_PATH := src
 INC_PATH := include
 
 # compile macros
-TARGET_NAME := tp1
+TARGET_NAME := tp1.out
 ifeq ($(OS),Windows_NT)
 	TARGET_NAME := $(addsuffix .exe,$(TARGET_NAME))
 endif
