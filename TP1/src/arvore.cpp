@@ -15,10 +15,13 @@ Arvore::~Arvore() {
 }
 
 void Arvore::Insere(string item) {
+    cout << "oi";
     InsereRecursivo(raiz, item);
 }
 
 void Arvore::InsereRecursivo(TipoNo* &p, string item) {
+        cout << "oi";
+
     if(p == nullptr) {
         p = new TipoNo();
         p->item = item;
@@ -45,15 +48,6 @@ void Arvore::CaminhaPosOrdem(TipoNo *p) {
         CaminhaPosOrdem(p->dir);
         cout << p->item << endl;
     }
-}
-
-TipoNo* Arvore::EncontraFolha(TipoNo *p) {
-    if(p->esq != null && p->dir != null) {
-        EncontraFolha(p->esq);
-        EncontraFolha(p->dir);
-    }
-
-    return p;
 }
 
 void Arvore::Limpa() {
