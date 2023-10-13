@@ -149,7 +149,7 @@ char Avaliacao::Avaliar(string formula, string valoracao) {
         }
     }
     
-    string resposta = pilhaDeAvaliacao->Desempilha();
+    char resposta = pilhaDeAvaliacao->Desempilha();
     
     pilhaDeAvaliacao->Limpa();
 
