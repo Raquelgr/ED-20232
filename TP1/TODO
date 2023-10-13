@@ -3,14 +3,3 @@ Verificar caracteres válidos
 Verificar parênteses (Balanceado)
 Validacao -a "0 & | 1" 001
 Validacao de opcao errada
-
-
-
-- recebo a expressao
-"0 | 1 & 2" 0e0
-
-enquanto não for uma formula "valida" eu vou criando filho
-
-x0 = 0
-x1 = e
-x2 = 0

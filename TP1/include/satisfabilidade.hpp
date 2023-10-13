@@ -8,12 +8,8 @@
 using namespace std;
 
 class Satisfabilidade  {
-    // private:
-    //     string RemoverEspacos(string str);
-    //     string ConverterInfixaParaPosfixa(string formula, string valoracao);
-        
     public:
-        void CriaArvore(string formula, string valoracao);
+        string CriaArvore(string formula, string valoracao);
 };
 
 #endif

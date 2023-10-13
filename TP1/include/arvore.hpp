@@ -10,14 +10,15 @@ using namespace std;
 class TipoNo {
     public: 
         TipoNo();
-    
-    private:
         string item;
+
+    private:
         TipoNo *pai;
         TipoNo *esq;
         TipoNo *dir;
-        
+
     friend class Arvore;
+    friend class Satisfabilidade;
 };
 
 class Arvore {
@@ -30,7 +31,7 @@ class Arvore {
         ~Arvore();
 
         void Insere(string item);
-        void CaminhaPosOrdem(TipoNo *p);
+        void CaminhaEResolve(string formula, TipoNo *p);
         void Limpa();
 
         TipoNo *raiz;

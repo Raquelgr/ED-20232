@@ -19,10 +19,10 @@ int main(int argc, char* argv[]) {
   bool ehSatisfabilidade = false;
 
   Avaliacao avaliacao;
-  char resultadoAvaliacao;
+  string resultadoAvaliacao;
 
   Satisfabilidade satisfabilidade;
-  //char resultadoAvaliacao;
+  string resultadoSatisfabilidade;
 
   while ((opt = getopt(argc, argv, "as::")) != EOF) {
     switch (opt) {
@@ -53,7 +53,13 @@ int main(int argc, char* argv[]) {
   
 
   if (ehSatisfabilidade) {
-    satisfabilidade.CriaArvore(formula, valoracao);
+    resultadoSatisfabilidade = satisfabilidade.CriaArvore(formula, valoracao);
+
+    if (resultadoSatisfabilidade == "0") {
+      cout << resultadoSatisfabilidade << endl; 
+    } else {
+      cout << "1 " << resultadoSatisfabilidade << endl;
+    }
   }
 
   return 0;
