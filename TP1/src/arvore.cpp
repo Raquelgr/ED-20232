@@ -26,6 +26,10 @@ void Arvore::InsereRecursivo(TipoNo* &p, string item) {
     
     for (int i = 0; i < item.length(); i++) {
         if(!(isdigit(item[i]))) {
+            if (item[i] != 'e' && item[i] != 'a') {
+                throw invalid_argument("A valoracao contem uma variavel nao permitida!");
+            }
+
             string copiaDoItem = item;
 
             string valoracaoEsq = item.replace(i, 1, "0");
@@ -51,26 +55,33 @@ void Arvore::CaminhaEResolve(string formula, TipoNo *p) {
         p->item = {resultadoAvaliacao};
     } else {      
         int posicaoDaVariavel = -1;
+        char variavel;
 
         for (int i = 0; i < p->item.length(); i++) {
             if(!(isdigit(p->item[i]))) {
                 posicaoDaVariavel = i;
+                variavel = p->item[i];
             }
         }
 
         if (posicaoDaVariavel != -1) {
             if (p->esq->item.length() == 1 && p->dir->item.length() == 1) {
-                if (p->esq->item == "1" && p->dir->item == "1") {  
-                    p->item = p->item.replace(posicaoDaVariavel, 1, "a");
-                } else if (p->esq->item == "1" && p->dir->item == "0") {  
-                    p->item = p->item.replace(posicaoDaVariavel, 1, "0");
-                } else if (p->esq->item == "0" && p->dir->item == "1") {  
-                    p->item = p->item.replace(posicaoDaVariavel, 1, "1");
-                } else if (p->esq->item == "0" && p->dir->item == "0"){
-                    p->item = "0";
+                if (variavel == 'e') {
+                    if (p->esq->item == "1" && p->dir->item == "1") {  
+                        p->item = p->item.replace(posicaoDaVariavel, 1, "a");
+                    } else if (p->esq->item == "1" && p->dir->item == "0") {  
+                        p->item = p->item.replace(posicaoDaVariavel, 1, "0");
+                    } else if (p->esq->item == "0" && p->dir->item == "1") {  
+                        p->item = p->item.replace(posicaoDaVariavel, 1, "1");
+                    } else if (p->esq->item == "0" && p->dir->item == "0") {
+                        p->item = "0";
+                    }
+                } else if (variavel == 'a') {
+                    if (p->esq->item != "1" || p->dir->item != "1") {  
+                        p->item = "0";
+                    }
                 }
             } else {
-
                 if (p->esq->item == "0") {  
                     p->item = p->dir->item;
                 } else  {

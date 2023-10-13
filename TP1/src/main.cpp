@@ -9,7 +9,10 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
+#define TAMANHO_MAXIMO_FORMULA 1000000
+#define TAMANHO_MAXIMO_VALORACAO 1000
+ 
+int main(int argc, char* argv[]) try {
   int opt;
   
   string formula;
@@ -33,17 +36,20 @@ int main(int argc, char* argv[]) {
         ehSatisfabilidade = true;
         break;
       default:
-        cout << "OPCAO INVALIDA!";
+        throw invalid_argument("OPCAO INVALIDA!");
         break;
     }
   }
 
-
-  //TODO: validar tamanho
   formula = argv[2];
+  if (formula.length() > TAMANHO_MAXIMO_FORMULA) {
+    throw length_error("A formula excedeu o tamanho permitido!");
+  }
 
-  //TODO: validar tamanho
   valoracao = argv[3];
+  if (valoracao.length() > TAMANHO_MAXIMO_VALORACAO) {
+    throw length_error("A valoracao excedeu o tamanho permitido!");
+  }
 
   if (ehAvaliacao) {
     resultadoAvaliacao = avaliacao.Avaliar(formula, valoracao);
@@ -51,7 +57,6 @@ int main(int argc, char* argv[]) {
     cout << resultadoAvaliacao << endl;
   }
   
-
   if (ehSatisfabilidade) {
     resultadoSatisfabilidade = satisfabilidade.CriaArvore(formula, valoracao);
 
@@ -63,4 +68,7 @@ int main(int argc, char* argv[]) {
   }
 
   return 0;
+}  catch (const std::exception& e) {
+    std::cerr << e.what() << std::endl;
+    return EXIT_FAILURE;
 }

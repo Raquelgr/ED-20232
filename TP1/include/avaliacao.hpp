@@ -12,6 +12,10 @@ using namespace std;
 class Avaliacao : public Funcoes {
     private:
         string RemoverEspacos(string str);
+        bool ParentesesBalanceados(string formula);
+        bool UltimoCaractereValido(string formula);
+        bool CaracteresValidos(string formula);
+
         string ConverterInfixaParaPosfixa(string formula, string valoracao);
         
     public:

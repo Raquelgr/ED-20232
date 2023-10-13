@@ -2,6 +2,10 @@
 #define PILHA_HPP
 
 #include <iostream>
+#include <sstream>
+#include <string>
+
+using namespace std;
 
 class TipoCelula {
     public: 

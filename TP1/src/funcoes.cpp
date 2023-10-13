@@ -24,7 +24,7 @@ bool Funcoes::IsOr(char caracter) {
     return false;
 }
 
-bool Funcoes::IsOperator(char caracter) {
+bool Funcoes::IsValidOperator(char caracter) {
     if(caracter == '(' || caracter == ')') {
         return true;
     } 
@@ -34,10 +34,6 @@ bool Funcoes::IsOperator(char caracter) {
     if(IsOr(caracter)) return true;
 
     return false;
-}
-
-bool Funcoes::IsNotOperator(char caracter) {
-    return caracter != '\n' && !IsOperator(caracter);
 }
 
 int Funcoes::Priority(char op) {

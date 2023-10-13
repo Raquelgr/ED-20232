@@ -12,8 +12,7 @@ class Funcoes {
         bool IsNot(char caracter);
         bool IsAnd(char caracter);
         bool IsOr(char caracter);
-        bool IsOperator(char caracter);
-        bool IsNotOperator(char caracter);
+        bool IsValidOperator(char caracter);
         int Priority(char op);
         int CheckPriority(char first, char second);
 };

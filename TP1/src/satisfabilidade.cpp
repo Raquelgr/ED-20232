@@ -6,10 +6,8 @@ string Satisfabilidade::CriaArvore(string formula, string valoracao) {
     arvore->Insere(valoracao);
 
     arvore->CaminhaEResolve(formula, arvore->raiz);
-   // arvore->CaminhaPosOrdem(arvore->raiz);
 
     string resposta = arvore->raiz->item; 
-   
     arvore->Limpa();
 
     return resposta;

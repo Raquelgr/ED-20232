@@ -28,7 +28,7 @@ char Pilha::Desempilha() {
     char aux;
 
     if (Vazia()) {
-        throw "A PILHA ESTA VAZIA!!";
+        throw invalid_argument("A pilha esta vazia!");
     }
 
     aux = topo->item;
