@@ -26,10 +26,12 @@ void Arvore::InsereRecursivo(TipoNo* &p, string item) {
     
     for (int i = 0; i < item.length(); i++) {
         if(!(isdigit(item[i]))) {
+            string copiaDoItem = item;
+
             string valoracaoEsq = item.replace(i, 1, "0");
             InsereRecursivo(p->esq, valoracaoEsq);
 
-            string valoracaoDir = item.replace(i, 1, "1");
+            string valoracaoDir = copiaDoItem.replace(i, 1, "1");
             InsereRecursivo(p->dir, valoracaoDir);
         }
     }
@@ -45,7 +47,6 @@ void Arvore::CaminhaEResolve(string formula, TipoNo *p) {
         Avaliacao avaliacao;
         char resultadoAvaliacao;
 
-        //TODO: melhorar o código pra n precisar de conversao
         resultadoAvaliacao = avaliacao.Avaliar(formula, p->item);
         p->item = {resultadoAvaliacao};
     } else {      

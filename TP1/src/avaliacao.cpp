@@ -17,19 +17,23 @@ string Avaliacao::ConverterInfixaParaPosfixa(string formula, string valoracao) {
     Pilha* pilhaDeConversao = new Pilha();
     
     string formulaLimpa = RemoverEspacos(formula);
-    string posfixa;
+    string posfixa = "";
 
     for(int i = 0; i < formulaLimpa.length(); i++) {    
         char caracter = formulaLimpa[i];
         
         if(IsNotOperator(caracter)) {
-            int posicao = caracter - 48;
-            //TODO: se a posicao não existir no array, dar erro
+            int posicao = (caracter - 48);
+
+            if(posicao < 0 || posicao >= valoracao.length()) {
+                throw "NAO EXISTE POSICAO " + to_string(posicao) + "NA VALORACAO INFORMADA!";
+            }
+
             posfixa += valoracao[posicao];
         } else if(caracter == '(') {
             pilhaDeConversao->Empilha('(');
         } else if (caracter == ')') {
-            while(pilhaDeConversao->GetValorTopo() != '(') {
+            while(!pilhaDeConversao->Vazia() && pilhaDeConversao->GetValorTopo() != '(') {
                 posfixa += pilhaDeConversao->Desempilha();
             }
 

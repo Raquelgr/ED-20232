@@ -18,6 +18,7 @@ void Pilha::Empilha(char item) {
     nova = new TipoCelula();
     nova->item = item;
     nova->prox = topo;
+
     topo = nova;
     tamanho++;
 }
@@ -25,6 +26,10 @@ void Pilha::Empilha(char item) {
 char Pilha::Desempilha() {
     TipoCelula *p;
     char aux;
+
+    if (Vazia()) {
+        throw "A PILHA ESTA VAZIA!!";
+    }
 
     aux = topo->item;
     p = topo;
