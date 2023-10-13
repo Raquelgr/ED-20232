@@ -49,7 +49,7 @@ int Funcoes::Priority(char op) {
 }
 
 int Funcoes::CheckPriority(char first, char second) {
-    if(Priority(first) <= Priority(second)) {
+    if(Priority(first) < Priority(second)) {
         return 1;
     }
 

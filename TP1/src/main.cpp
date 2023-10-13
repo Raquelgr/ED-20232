@@ -10,7 +10,7 @@
 using namespace std;
 
 #define TAMANHO_MAXIMO_FORMULA 1000000
-#define TAMANHO_MAXIMO_VALORACAO 1000
+#define TAMANHO_MAXIMO_VALORACAO 100
  
 int main(int argc, char* argv[]) try {
   int opt;
@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) try {
   bool ehSatisfabilidade = false;
 
   Avaliacao avaliacao;
-  string resultadoAvaliacao;
+  int resultadoAvaliacao;
 
   ArvoreDeSatisfabilidade satisfabilidade;
   string resultadoSatisfabilidade;
@@ -52,18 +52,18 @@ int main(int argc, char* argv[]) try {
   }
 
   if (ehAvaliacao) {
-    resultadoAvaliacao = avaliacao.Avaliar(formula, valoracao);
+    resultadoAvaliacao = (avaliacao.Avaliar(formula, valoracao)) - 48;
 
     cout << resultadoAvaliacao << endl;
   }
   
   if (ehSatisfabilidade) {
     resultadoSatisfabilidade = satisfabilidade.VerificarSatisfablidade(formula, valoracao);
-
+    
     if (resultadoSatisfabilidade == "0") {
-      cout << resultadoSatisfabilidade << endl; 
+      cout << 0 << endl; 
     } else {
-      cout << "1 " << resultadoSatisfabilidade << endl;
+      cout << 1 << " " << resultadoSatisfabilidade << endl;
     }
   }
 

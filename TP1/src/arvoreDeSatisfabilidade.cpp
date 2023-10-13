@@ -84,9 +84,10 @@ void ArvoreDeSatisfabilidade::CaminhaEResolve(string formula, TipoNo *p) {
             } else {
                 if (p->esq->item == "0") {  
                     p->item = p->dir->item;
-                } else  {
+                } else {
                     p->item = p->esq->item;
                 }
+                
             } 
         }       
     }    
@@ -118,7 +119,7 @@ string ArvoreDeSatisfabilidade::VerificarSatisfablidade(string formula, string v
    
     arvore->Insere(valoracao);
     arvore->CaminhaEResolve(formula, arvore->raiz);
-
+    arvore->CaminhaPosOrdem(arvore->raiz);
     string resposta = arvore->raiz->item; 
     
     arvore->Limpa();

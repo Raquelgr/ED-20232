@@ -6,6 +6,7 @@ TipoCelula::TipoCelula() {
 
 Pilha::Pilha() {
     topo = nullptr;
+    tamanho = 0;
 }
 
 Pilha::~Pilha() {

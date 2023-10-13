@@ -86,7 +86,9 @@ string Avaliacao::ConverterInfixaParaPosfixa(string formula, string valoracao) {
                 posfixa += pilhaDeConversao->Desempilha();
             }
 
-            pilhaDeConversao->Desempilha();
+            if (!pilhaDeConversao->Vazia()) {
+                pilhaDeConversao->Desempilha();
+            }
         } else {
             while(!pilhaDeConversao->Vazia() && CheckPriority(caracter, pilhaDeConversao->GetValorTopo())) {
                 posfixa += pilhaDeConversao->Desempilha();
@@ -115,7 +117,7 @@ char Avaliacao::Avaliar(string formula, string valoracao) {
         
         if(isdigit(caracter)) {
             pilhaDeAvaliacao->Empilha(caracter);
-        } else if(IsNot(caracter)) {
+        } else if(IsNot(caracter) && !pilhaDeAvaliacao->Vazia()) {
             char valorDesempilhado = pilhaDeAvaliacao->Desempilha(); 
             if (valorDesempilhado != '1' && valorDesempilhado != '0') throw invalid_argument("Valor invalido!");
 
@@ -123,7 +125,7 @@ char Avaliacao::Avaliar(string formula, string valoracao) {
             char resultadoConvertido = to_string(resultadoNot)[0];
 
             pilhaDeAvaliacao->Empilha(resultadoConvertido);
-        } else {
+        } else if (!pilhaDeAvaliacao->Vazia()) {
             char primeiroValorDesempilhado = pilhaDeAvaliacao->Desempilha(); 
             if (primeiroValorDesempilhado != '1' && primeiroValorDesempilhado != '0') throw invalid_argument("Valor invalido!");
 
