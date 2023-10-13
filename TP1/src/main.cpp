@@ -5,7 +5,7 @@
 #include <getopt.h>
 
 #include <avaliacao.hpp>
-#include <satisfabilidade.hpp>
+#include <arvoreDeSatisfabilidade.hpp>
 
 using namespace std;
 
@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) try {
   Avaliacao avaliacao;
   string resultadoAvaliacao;
 
-  Satisfabilidade satisfabilidade;
+  ArvoreDeSatisfabilidade satisfabilidade;
   string resultadoSatisfabilidade;
 
   while ((opt = getopt(argc, argv, "as::")) != EOF) {
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) try {
   }
   
   if (ehSatisfabilidade) {
-    resultadoSatisfabilidade = satisfabilidade.CriaArvore(formula, valoracao);
+    resultadoSatisfabilidade = satisfabilidade.VerificarSatisfablidade(formula, valoracao);
 
     if (resultadoSatisfabilidade == "0") {
       cout << resultadoSatisfabilidade << endl; 

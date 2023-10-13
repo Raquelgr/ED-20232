@@ -1,5 +1,5 @@
-#ifndef ARVORE_HPP
-#define ARVORE_HPP
+#ifndef ARVORE_DE_SATISFABILIDADE_HPP
+#define ARVORE_DE_SATISFABILIDADE_HPP
 
 #include <iostream>
 #include <sstream>
@@ -16,18 +16,15 @@ class TipoNo {
         TipoNo *esq;
         TipoNo *dir;
 
-    friend class Arvore;
+    friend class ArvoreDeSatisfabilidade;
 };
 
-class Arvore {
+class ArvoreDeSatisfabilidade {
     private: 
         void InsereRecursivo(TipoNo* &p, string item);
         void ApagaRecursivo(TipoNo *p);
 
-    public:
-        Arvore();
-        ~Arvore();
-
+    protected:
         void Insere(string item);
         void CaminhaEResolve(string formula, TipoNo *p);
         void CaminhaPosOrdem(TipoNo *p);
@@ -35,6 +32,12 @@ class Arvore {
         void Limpa();
 
         TipoNo *raiz;
+    
+    public:
+        ArvoreDeSatisfabilidade();
+        ~ArvoreDeSatisfabilidade();
+
+        string VerificarSatisfablidade(string formula, string valoracao);
 };
 
 #endif

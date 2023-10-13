@@ -1,4 +1,4 @@
-#include <arvore.hpp>
+#include <arvoreDeSatisfabilidade.hpp>
 #include <avaliacao.hpp>
 
 TipoNo::TipoNo() {
@@ -6,19 +6,19 @@ TipoNo::TipoNo() {
     dir = nullptr;
 }
 
-Arvore::Arvore() {
+ArvoreDeSatisfabilidade::ArvoreDeSatisfabilidade() {
     raiz = nullptr;
 }
 
-Arvore::~Arvore() {
+ArvoreDeSatisfabilidade::~ArvoreDeSatisfabilidade() {
     Limpa();
 }
 
-void Arvore::Insere(string item) {
+void ArvoreDeSatisfabilidade::Insere(string item) {
     InsereRecursivo(raiz, item);
 }
 
-void Arvore::InsereRecursivo(TipoNo* &p, string item) {
+void ArvoreDeSatisfabilidade::InsereRecursivo(TipoNo* &p, string item) {
     if(p == nullptr) {
         p = new TipoNo();
         p->item = item;
@@ -41,7 +41,7 @@ void Arvore::InsereRecursivo(TipoNo* &p, string item) {
     }
 }
 
-void Arvore::CaminhaEResolve(string formula, TipoNo *p) {
+void ArvoreDeSatisfabilidade::CaminhaEResolve(string formula, TipoNo *p) {
     if(p->esq != nullptr || p->dir != nullptr) {
         CaminhaEResolve(formula, p->esq);
         CaminhaEResolve(formula, p->dir);
@@ -92,7 +92,7 @@ void Arvore::CaminhaEResolve(string formula, TipoNo *p) {
     }    
 }
 
-void Arvore::CaminhaPosOrdem(TipoNo *p) {
+void ArvoreDeSatisfabilidade::CaminhaPosOrdem(TipoNo *p) {
     if(p != nullptr) {
         CaminhaPosOrdem(p->esq);
         CaminhaPosOrdem(p->dir);
@@ -100,15 +100,28 @@ void Arvore::CaminhaPosOrdem(TipoNo *p) {
     }    
 }
 
-void Arvore::Limpa() {
+void ArvoreDeSatisfabilidade::Limpa() {
     ApagaRecursivo(raiz);
     raiz = nullptr;
 }
 
-void Arvore::ApagaRecursivo(TipoNo *p) {
+void ArvoreDeSatisfabilidade::ApagaRecursivo(TipoNo *p) {
     if(p != nullptr) {
         ApagaRecursivo(p->esq);
         ApagaRecursivo(p->dir);
         delete p;
     }
+}
+
+string ArvoreDeSatisfabilidade::VerificarSatisfablidade(string formula, string valoracao) {
+    ArvoreDeSatisfabilidade* arvore = new ArvoreDeSatisfabilidade();
+   
+    arvore->Insere(valoracao);
+    arvore->CaminhaEResolve(formula, arvore->raiz);
+
+    string resposta = arvore->raiz->item; 
+    
+    arvore->Limpa();
+
+    return resposta;
 }
