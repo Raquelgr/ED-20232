@@ -149,5 +149,9 @@ char Avaliacao::Avaliar(string formula, string valoracao) {
         }
     }
     
-    return pilhaDeAvaliacao->Desempilha();
+    string resposta = pilhaDeAvaliacao->Desempilha();
+    
+    pilhaDeAvaliacao->Limpa();
+
+    return resposta;
 }
