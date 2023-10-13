@@ -2,10 +2,10 @@
 #include <avaliacao.hpp>
 
 string Avaliacao::RemoverEspacos(string str) {
-    string stringLimpa = "";
+    string stringLimpa;
 
     for(int i = 0; i < str.length(); i++) {
-        if (str[i] != ' ') {
+        if (str[i] != ' ' && str[i] != '\n') {
             stringLimpa += str[i];
         }
     }
@@ -21,7 +21,7 @@ string Avaliacao::ConverterInfixaParaPosfixa(string formula, string valoracao) {
 
     for(int i = 0; i < formulaLimpa.length(); i++) {    
         char caracter = formulaLimpa[i];
-
+        
         if(IsNotOperator(caracter)) {
             int posicao = caracter - 48;
             //TODO: se a posicao não existir no array, dar erro
@@ -52,7 +52,8 @@ string Avaliacao::ConverterInfixaParaPosfixa(string formula, string valoracao) {
 }
 
 char Avaliacao::Avaliar(string formula, string valoracao) {
-    string formulaPosfixa = ConverterInfixaParaPosfixa(formula, valoracao);
+    string formulaPosfixa;
+    formulaPosfixa = ConverterInfixaParaPosfixa(formula, valoracao);
 
     Pilha* pilhaDeAvaliacao = new Pilha();
 

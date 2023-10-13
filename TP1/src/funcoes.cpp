@@ -37,7 +37,7 @@ bool Funcoes::IsOperator(char caracter) {
 }
 
 bool Funcoes::IsNotOperator(char caracter) {
-    return !IsOperator(caracter);
+    return caracter != '\n' && !IsOperator(caracter);
 }
 
 int Funcoes::Priority(char op) {

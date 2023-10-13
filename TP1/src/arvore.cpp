@@ -2,7 +2,6 @@
 #include <avaliacao.hpp>
 
 TipoNo::TipoNo() {
-    pai = nullptr;
     esq = nullptr;
     dir = nullptr;
 }
@@ -32,10 +31,6 @@ void Arvore::InsereRecursivo(TipoNo* &p, string item) {
 
             string valoracaoDir = item.replace(i, 1, "1");
             InsereRecursivo(p->dir, valoracaoDir);
-
-            //Define o pai 
-            p->esq->pai = p;
-            p->dir->pai = p;
         }
     }
 }
@@ -45,10 +40,11 @@ void Arvore::CaminhaEResolve(string formula, TipoNo *p) {
         CaminhaEResolve(formula, p->esq);
         CaminhaEResolve(formula, p->dir);
     } 
-    
+
     if(p->esq == nullptr && p->dir == nullptr) {
         Avaliacao avaliacao;
         char resultadoAvaliacao;
+
         //TODO: melhorar o código pra n precisar de conversao
         resultadoAvaliacao = avaliacao.Avaliar(formula, p->item);
         p->item = {resultadoAvaliacao};
@@ -73,6 +69,7 @@ void Arvore::CaminhaEResolve(string formula, TipoNo *p) {
                     p->item = "0";
                 }
             } else {
+
                 if (p->esq->item == "0") {  
                     p->item = p->dir->item;
                 } else  {
@@ -83,13 +80,13 @@ void Arvore::CaminhaEResolve(string formula, TipoNo *p) {
     }    
 }
 
-// void Arvore::CaminhPosOrdem(TipoNo *p) {
-//     if(p != nullptr) {
-//         CaminhPosOrdem(p->esq);
-//         CaminhPosOrdem(p->dir);
-//         cout << p->item << endl;
-//     }    
-// }
+void Arvore::CaminhaPosOrdem(TipoNo *p) {
+    if(p != nullptr) {
+        CaminhaPosOrdem(p->esq);
+        CaminhaPosOrdem(p->dir);
+        cout << p->item << endl;
+    }    
+}
 
 void Arvore::Limpa() {
     ApagaRecursivo(raiz);
