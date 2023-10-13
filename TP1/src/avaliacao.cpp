@@ -103,7 +103,7 @@ string Avaliacao::ConverterInfixaParaPosfixa(string formula, string valoracao) {
         posfixa += pilhaDeConversao->Desempilha();
     }
 
-    delete pilhaDeConversao;
+    pilhaDeConversao->~Pilha();
 
     return posfixa;
 }
@@ -152,7 +152,7 @@ char Avaliacao::Avaliar(string formula, string valoracao) {
     }
     
     char resposta = pilhaDeAvaliacao->Desempilha();
-    delete pilhaDeAvaliacao;
+    pilhaDeAvaliacao->~Pilha();
 
     return resposta;
 }
