@@ -68,17 +68,42 @@ string Avaliacao::ConverterInfixaParaPosfixa(string formula, string valoracao) {
     Pilha* pilhaDeConversao = new Pilha();
     string posfixa = "";
 
-    for(int i = 0; i < formulaLimpa.length(); i++) {    
-        char caracter = formulaLimpa[i];
+    int pos = 0;
+    for(pos = 0; pos < formulaLimpa.length(); pos++) {    
+        char caracter = formulaLimpa[pos];
         
+        //É possível chegar até a posição 99
         if(isdigit(caracter)) {
-            int posicao = (caracter - 48);
+            int primeiraPosicao = (caracter - 48);
 
-            if(posicao < 0 || posicao >= valoracao.length()) {
-                throw out_of_range("Nao existe posicao " + to_string(posicao) + " na valoracao informada!");
+            if(primeiraPosicao < 0 || primeiraPosicao >= valoracao.length()) {
+                throw out_of_range("Nao existe posicao " + to_string(primeiraPosicao) + " na valoracao informada!");
+            } 
+
+            char proximoCaracter = formulaLimpa[pos+1];
+            if(isdigit(proximoCaracter)) {
+                int segundaPosicao = (proximoCaracter - 48);                
+
+                if(segundaPosicao < 0 || segundaPosicao >= valoracao.length()) {
+                    throw out_of_range("Nao existe posicao " + to_string(segundaPosicao) + " na valoracao informada!");
+                }
+
+                //Necessário converter para string para concatenar as duas posições
+                string primeiraPosicaoEmString = to_string(primeiraPosicao); 
+                string segundaPosicaoEmString = to_string(segundaPosicao); 
+                string posicaoDoDigitoEmString = primeiraPosicaoEmString + segundaPosicaoEmString; 
+
+                //Depois é necessário converter para achar a posição no array
+                int posicaoFinal = stoi(posicaoDoDigitoEmString);
+
+                posfixa += valoracao[posicaoFinal];
+
+                //Incrementa o i para pular o próximo caracter que já foi considerado
+                pos++;
+            } else {
+                posfixa += valoracao[primeiraPosicao];
             }
 
-            posfixa += valoracao[posicao];
         } else if(caracter == '(') {
             pilhaDeConversao->Empilha('(');
         } else if (caracter == ')') {

@@ -31,7 +31,7 @@ void ArvoreDeSatisfabilidade::InsereRecursivo(TipoNo* &p, string item) {
             }
 
             string copiaDoItem = item;
-
+            
             string valoracaoEsq = item.replace(i, 1, "0");
             InsereRecursivo(p->esq, valoracaoEsq);
 
@@ -77,20 +77,59 @@ void ArvoreDeSatisfabilidade::CaminhaEResolve(string formula, TipoNo *p) {
                         p->item = "0";
                     }
                 } else if (variavel == 'a') {
-                    if (p->esq->item != "1" || p->dir->item != "1") {  
+                    if (p->esq->item != "1" || p->dir->item != "1") {
                         p->item = "0";
+                    }
+                } else {
+                    if (p->esq->item == "0") {  
+                        p->item = p->dir->item;
+                    } else {
+                        p->item = p->esq->item;
                     }
                 }
             } else {
-                if (p->esq->item == "0") {  
-                    p->item = p->dir->item;
+                if (p->esq->item.length() == 1 && p->dir->item.length() > 1) { 
+                    if (variavel == 'a') {
+                        p->item = p->esq->item;
+                    } else {
+                        p->item = p->dir->item;
+                    }
+                } else if (p->esq->item.length() > 1 && p->dir->item.length() == 1) {
+                    if (variavel == 'a') {
+                        p->item = p->dir->item;
+                    } else {
+                        p->item = p->esq->item;
+                    }
                 } else {
-                    p->item = p->esq->item;
+                    for (int j = 0; j < p->item.length(); j++) {
+                        if ((p->esq->item.find("0") != string::npos && p->dir->item.find("1") != string::npos && p->esq->item.find("0") == p->dir->item.find("1"))) {
+                            p->item = p->item.replace(p->esq->item.find("0"), 1, "a");
+                        } 
+    
+                        if ((p->esq->item.find("1") != string::npos && p->dir->item.find("0") != string::npos && p->esq->item.find("1") == p->dir->item.find("0"))) {
+                            p->item = p->item.replace(p->esq->item.find("1"), 1, "a");
+                        } 
+                        
+                        if ((p->esq->item.find("1") != string::npos && p->dir->item.find("a") != string::npos && p->esq->item.find("1") == p->dir->item.find("a"))) {
+                            p->item = p->item.replace(p->esq->item.find("1"), 1, "1");
+                        } 
+                        
+                        if ((p->esq->item.find("0") != string::npos && p->dir->item.find("a") != string::npos && p->esq->item.find("0") == p->dir->item.find("a"))) {
+                            p->item = p->item.replace(p->esq->item.find("0"), 1, "0");
+                        } 
+
+                        if ((p->esq->item.find("a") != string::npos && p->dir->item.find("1") != string::npos && p->esq->item.find("a") == p->dir->item.find("1"))) {
+                            p->item = p->item.replace(p->dir->item.find("1"), 1, "1");
+                        } 
+                        
+                        if ((p->esq->item.find("a") != string::npos && p->dir->item.find("0") != string::npos && p->esq->item.find("a") == p->dir->item.find("0"))) {
+                            p->item = p->item.replace(p->esq->item.find("a"), 1, "0");
+                        }
+                    }
                 }
-                
             } 
-        }       
-    }    
+        }  
+    }  
 }
 
 void ArvoreDeSatisfabilidade::Limpa() {
@@ -111,6 +150,14 @@ string ArvoreDeSatisfabilidade::VerificarSatisfablidade(string formula, string v
    
     arvore->Insere(valoracao);
     arvore->CaminhaEResolve(formula, arvore->raiz);
+
+    //Verifica a presença de "e" na raiz, todo "e" na raiz final deve ser alterado por "a"
+    for (int i = 0; i < arvore->raiz->item.length(); i++) {
+        if(arvore->raiz->item[i] == 'e') {
+            arvore->raiz->item = arvore->raiz->item.replace(i, 1, "a");
+        }
+    }
+
     string resposta = arvore->raiz->item; 
     
     arvore->Limpa();
