@@ -93,14 +93,6 @@ void ArvoreDeSatisfabilidade::CaminhaEResolve(string formula, TipoNo *p) {
     }    
 }
 
-void ArvoreDeSatisfabilidade::CaminhaPosOrdem(TipoNo *p) {
-    if(p != nullptr) {
-        CaminhaPosOrdem(p->esq);
-        CaminhaPosOrdem(p->dir);
-        cout << p->item << endl;
-    }    
-}
-
 void ArvoreDeSatisfabilidade::Limpa() {
     ApagaRecursivo(raiz);
     raiz = nullptr;
@@ -119,7 +111,6 @@ string ArvoreDeSatisfabilidade::VerificarSatisfablidade(string formula, string v
    
     arvore->Insere(valoracao);
     arvore->CaminhaEResolve(formula, arvore->raiz);
-    arvore->CaminhaPosOrdem(arvore->raiz);
     string resposta = arvore->raiz->item; 
     
     arvore->Limpa();
