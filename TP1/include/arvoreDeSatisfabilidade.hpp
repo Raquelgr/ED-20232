@@ -27,6 +27,7 @@ class ArvoreDeSatisfabilidade {
     protected:
         void Insere(string item);
         void CaminhaEResolve(string formula, TipoNo *p);
+        void CaminhaPosOrdem(TipoNo *p);
         
         void Limpa();
 
