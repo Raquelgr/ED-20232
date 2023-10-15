@@ -1,7 +1,7 @@
 #include <funcoes.hpp>
 
 bool Funcoes::IsNot(char caracter) {
-    if(caracter == '~') {
+    if (caracter == '~') {
         return true;
     } 
 
@@ -9,7 +9,7 @@ bool Funcoes::IsNot(char caracter) {
 }
 
 bool Funcoes::IsAnd(char caracter) {
-    if(caracter == '&') {
+    if (caracter == '&') {
         return true;
     } 
 
@@ -17,7 +17,7 @@ bool Funcoes::IsAnd(char caracter) {
 }
 
 bool Funcoes::IsOr(char caracter) {
-    if(caracter == '|') {
+    if (caracter == '|') {
         return true;
     } 
 
@@ -25,23 +25,23 @@ bool Funcoes::IsOr(char caracter) {
 }
 
 bool Funcoes::IsValidOperator(char caracter) {
-    if(caracter == '(' || caracter == ')') {
+    if (caracter == '(' || caracter == ')') {
         return true;
     } 
 
-    if(IsNot(caracter)) return true;
-    if(IsAnd(caracter)) return true;
-    if(IsOr(caracter)) return true;
+    if (IsNot(caracter)) return true;
+    if (IsAnd(caracter)) return true;
+    if (IsOr(caracter)) return true;
 
     return false;
 }
 
 int Funcoes::Priority(char op) {
-    if(IsNot(op)) {
+    if (IsNot(op)) {
         return 3;
-    } else if(IsAnd(op)) {
+    } else if (IsAnd(op)) {
         return 2;
-    } else if(IsOr(op)) {
+    } else if (IsOr(op)) {
         return 1;
     } 
         
@@ -49,7 +49,7 @@ int Funcoes::Priority(char op) {
 }
 
 int Funcoes::CheckPriority(char first, char second) {
-    if(Priority(first) < Priority(second)) {
+    if (Priority(first) < Priority(second)) {
         return 1;
     }
 

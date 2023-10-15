@@ -33,11 +33,10 @@ class Pilha {
         char Desempilha();
         void Limpa();
 
+        // Método extra que retorna o valor do topo, mas não o desempilha
         char GetValorTopo();
 
-        bool Vazia() {
-            return tamanho == 0;
-        }
+        bool Vazia() { return tamanho == 0; }
 };
 
 #endif

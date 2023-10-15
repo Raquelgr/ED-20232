@@ -42,7 +42,7 @@ char Pilha::Desempilha() {
 }
 
 void Pilha::Limpa() {
-    while(!Vazia()) {
+    while (!Vazia()) {
         Desempilha();
     }
 }

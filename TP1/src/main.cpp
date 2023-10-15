@@ -51,6 +51,7 @@ int main(int argc, char* argv[]) try {
     throw length_error("A valoracao excedeu o tamanho permitido!");
   }
 
+  // Verifica opção escolhida
   if (ehAvaliacao) {
     resultadoAvaliacao = (avaliacao.Avaliar(formula, valoracao)) - 48;
 
@@ -69,6 +70,7 @@ int main(int argc, char* argv[]) try {
 
   return 0;
 }  catch (const std::exception& e) {
+    // "Recolhe" exceção gerada para mostrar a mensagem
     std::cerr << e.what() << std::endl;
     return EXIT_FAILURE;
 }
