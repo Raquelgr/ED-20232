@@ -1,5 +1,4 @@
 #include "unionFind.hpp"
-#include "heap.hpp"
 
 UnionFind::UnionFind(int quantidade_subconjuntos) {
     tamanho = quantidade_subconjuntos;
