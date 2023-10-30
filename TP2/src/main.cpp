@@ -3,6 +3,7 @@
 #include <string>
 
 #include <getopt.h>
+#include <grafo.hpp>
 
 using namespace std;
 
@@ -49,15 +50,30 @@ int main(int argc, char* argv[]) try {
       break;
   }
 
+  Grafo* grafo = new Grafo(numVertices);
+
   for (int i = 0; i < numVertices; i++) {
     int numVizinhos = 0;
     cin >> numVizinhos;
 
+    grafo->DefinirQuantidadeDeVizinhos(i, numVizinhos);
+
     for (int j = 0; j < numVizinhos; j++) {
       int vizinho;
       cin >> vizinho;
+
+      grafo->InserirVizinho(i, j, vizinho);
     }
   }
+
+  for (int i = 0; i < numVertices; i++) {
+    int cor = 0;
+    cin >> cor;
+
+    grafo->DefinirCor(i, cor);
+  }
+
+  grafo->Imprime();
 
   return 0;
 }  catch (const std::exception& e) {
