@@ -1,11 +1,15 @@
-#ifndef METODOS_CONHECIDOS_HPP
-#define METODOS_CONHECIDOS_HPP
+#ifndef METODOS_BASICOS_HPP
+#define METODOS_BASICOS_HPP
 
 #include <iostream>
 #include <sstream>
 #include <string>
 
-#include <grafo.hpp>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+#include <vertice.hpp>
 
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include <metodosConhecidos.hpp>
+#include <metodosBasicos.hpp>
 
 void TrocaPosicao(Vertice* a, Vertice* b) {
     Vertice aux;

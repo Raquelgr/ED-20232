@@ -1,18 +1,11 @@
 #ifndef GRAFO_HPP
 #define GRAFO_HPP
 
-class Vertice {
-    protected:
-        int qtdVizinhos;
-        int* vizinhos;
+#include <iostream>
+#include <sstream>
+#include <string>
 
-    public: 
-        Vertice();
-        int rotulo;
-        int cor;
-
-    friend class Grafo;
-};
+#include <vertice.hpp>
 
 class Grafo {
     public:

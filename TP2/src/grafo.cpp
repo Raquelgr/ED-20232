@@ -1,10 +1,4 @@
-#include <iostream>
-#include <sstream>
-#include <string>
-
 #include <grafo.hpp>
-
-using namespace std;
 
 Vertice::Vertice() { 
     rotulo = -1;
