@@ -6,19 +6,24 @@
 
 using namespace std;
 
-TipoItem::TipoItem() { 
-    qtdVizinhos = 0; 
+Vertice::Vertice() { 
+    rotulo = -1;
     cor = -1;
+    qtdVizinhos = 0; 
     vizinhos = nullptr;
 }
 
 Grafo::Grafo(int qtdVertices) {
     tamanho = qtdVertices;  
-    vertices = new TipoItem[qtdVertices];
+    vertices = new Vertice[qtdVertices];
+
+    for (int i = 0; i < qtdVertices; i++) {
+        vertices[i].rotulo = i;
+    }
 }
 
 Grafo::~Grafo() { 
-     for (int i = 0; i < tamanho; i++) {
+    for (int i = 0; i < tamanho; i++) {
         delete[] vertices[i].vizinhos;
     }
 
@@ -38,14 +43,38 @@ void Grafo::DefinirCor(int vertice, int cor) {
     vertices[vertice].cor = cor;
 }
 
-void Grafo::Imprime() {
+bool Grafo::VerificarColoracaoGulosa() {
+    Vertice vertice;
+
     for (int i = 0; i < tamanho; i++) {
-        cout << "Vértice " << i << " Cor " << vertices[i].cor << " ";
+        vertice = vertices[i];
 
-        for (int j = 0; j < vertices[i].qtdVizinhos; j++) {
-            cout << vertices[i].vizinhos[j] << " ";
+        if (vertice.cor > 1) {
+            int qtdDeCoresNecessarias = (vertice.cor) - 1;
+            int contador = 0;
+
+            if (vertice.qtdVizinhos < qtdDeCoresNecessarias) { 
+                return false;
+            }
+
+            int aux = qtdDeCoresNecessarias;
+
+            for (int aux = qtdDeCoresNecessarias; aux > 0; aux--) {
+                for (int j = 0; j < vertice.qtdVizinhos; j++) {
+                    int vizinho = vertice.vizinhos[j];
+
+                    if (vertices[vizinho].cor == aux) {
+                        contador++;
+                        break;
+                    }
+                }
+            }
+
+            if (contador < qtdDeCoresNecessarias) {
+                return false;
+            }
         }
-
-        cout << endl;
     }
+
+    return true;
 }

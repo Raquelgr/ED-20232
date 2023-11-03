@@ -5,25 +5,15 @@
 #include <sstream>
 #include <string>
 
+#include <grafo.hpp>
+
 using namespace std;
 
-// class TipoNo {
-//     public: 
-//         TipoNo();
-//         string item;
+void TrocaPosicao(Vertice* a, Vertice* b);
+bool NecessitaTroca(Vertice a, Vertice b);
 
-//     private:
-//         TipoNo *esq;
-//         TipoNo *dir;
-
-//     friend class ArvoreDeSatisfabilidade;
-// };
-
-class MetodosConhecidos {
-    public:
-        void BubbleSort(int *item, int tamanho);
-        void SelectionSort(int *item, int tamanho);
-        void InserctionSort(int *item, int tamanho);
-};
+void BubbleSort(Vertice *vertices, int tamanho);
+void SelectionSort(Vertice *vertices, int tamanho);
+void InserctionSort(Vertice *vertices, int tamanho);
 
 #endif
