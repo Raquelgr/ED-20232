@@ -48,7 +48,6 @@ void Constroi(Vertice *vertices, int tamanho) {
     int esq;
     
     esq = tamanho / 2 + 1;
-    
     while (esq > 1) { 
         esq--;
         Refaz(vertices, esq, tamanho);
@@ -61,9 +60,9 @@ void HeapSort(Vertice *vertices, int tamanho) {
     Constroi(vertices, tamanho);
 
     esq = 1; 
-    dir = tamanho;
-
-    while (dir > 1) {
+    dir = tamanho - 1;
+    
+    while (dir > 0) {
         aux = vertices[1];
         vertices[1] = vertices[dir];
         vertices[dir] = aux;
