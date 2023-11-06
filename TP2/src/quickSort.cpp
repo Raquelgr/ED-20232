@@ -1,51 +1,24 @@
 #include <quickSort.hpp>
 
-bool ElementoMaiorQuePivo(Vertice a, Vertice b) {
-    if (a.cor > b.cor) {
-        return true;
-    } else if (a.cor == b.cor) { 
-        if (a.rotulo > b.rotulo) { 
-            return true;
-        }
-    }
-
-    return false;
-}
-
-bool ElementoMenorQuePivo(Vertice a, Vertice b) {
-    if (a.cor < b.cor) {
-        return true;
-    } else if (a.cor == b.cor) { 
-        if (a.rotulo < b.rotulo) { 
-            return true;
-        }
-    }
-
-    return false;
-}
-
 void Particao(int esq, int dir, int *i, int *j, Vertice *vertices) { 
-    Vertice firstAux, secondAux;
+    Vertice aux;
     *i = esq; 
     *j = dir;
 
-    firstAux = vertices[(*i + *j)/2]; 
+    aux = vertices[(*i + *j)/2]; 
     
     do { 
-        while (ElementoMaiorQuePivo(firstAux, vertices[*i])) (*i)++;
-        while (ElementoMenorQuePivo(firstAux, vertices[*j])) (*j)--;
+        while (EhMaior(aux, vertices[*i])) (*i)++;
+        while (EhMenor(aux, vertices[*j])) (*j)--;
 
         if (*i <= *j) { 
-            secondAux = vertices[*i]; 
-            vertices[*i] = vertices[*j]; 
-            vertices[*j] = secondAux;
+            Troca(&vertices[*i], &vertices[*j]);
 
             (*i)++; (*j)--;
         }
 
     } while (*i <= *j);
 }
-
 
 void Ordena(int esq, int dir, Vertice *vertices) { 
     int i = 0;

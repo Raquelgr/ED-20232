@@ -10,8 +10,12 @@ class Vertice {
         Vertice();
         int rotulo;
         int cor;
-
+        
     friend class Grafo;
 };
+
+void Troca(Vertice* a, Vertice* b);
+bool EhMenor(Vertice a, Vertice b);
+bool EhMaior(Vertice a, Vertice b);
 
 #endif

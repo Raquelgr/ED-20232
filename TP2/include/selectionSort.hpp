@@ -1,5 +1,5 @@
-#ifndef MERGESORT_HPP
-#define MERGESORT_HPP
+#ifndef SELECTIONSORT_HPP
+#define SELECTIONSORT_HPP
 
 #include <iostream>
 #include <sstream>
@@ -9,6 +9,6 @@
 
 using namespace std;
 
-void MergeSort(Vertice *vertices, int tamanho); 
+void SelectionSort(Vertice *vertices, int tamanho);
 
 #endif

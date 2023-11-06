@@ -1,17 +1,5 @@
 #include <mergeSort.hpp>
 
-bool ElementoMenor(Vertice a, Vertice b) {
-    if (a.cor < b.cor) {
-        return true;
-    } else if (a.cor == b.cor) { 
-        if (a.rotulo < b.rotulo) { 
-            return true;
-        }
-    }
-
-    return false;
-}
-
 void Merge(Vertice* vertices, int inicio, int meio, int fim) {
     int tamanhoEsq = meio - inicio + 1;
     int tamanhoDir = fim - meio; 
@@ -32,7 +20,7 @@ void Merge(Vertice* vertices, int inicio, int meio, int fim) {
     int index = inicio;
 
     while (indexEsq < tamanhoEsq && indexDir < tamanhoEsq) {
-        if (ElementoMenor(vetorEsq[indexEsq], vetorDir[indexDir])) {
+        if (EhMenor(vetorEsq[indexEsq], vetorDir[indexDir])) {
             vertices[index] = vetorEsq[indexEsq];
             indexEsq++;
         } else {
@@ -61,7 +49,6 @@ void Merge(Vertice* vertices, int inicio, int meio, int fim) {
     delete[] vetorDir;
 }
 
-
 void Ordena(Vertice *vertices, int inicio, int fim) { 
     if (inicio >= fim) return;
  
@@ -74,5 +61,5 @@ void Ordena(Vertice *vertices, int inicio, int fim) {
 }
 
 void MergeSort(Vertice *vertices, int tamanho) { 
-  Ordena(vertices, 0, tamanho-1); 
+    Ordena(vertices, 0, tamanho-1); 
 }

@@ -1,12 +1,5 @@
 #include <grafo.hpp>
 
-Vertice::Vertice() { 
-    rotulo = -1;
-    cor = -1;
-    qtdVizinhos = 0; 
-    vizinhos = nullptr;
-}
-
 Grafo::Grafo(int qtdVertices) {
     tamanho = qtdVertices;  
     vertices = new Vertice[qtdVertices];

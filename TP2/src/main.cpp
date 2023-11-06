@@ -5,8 +5,9 @@
 #include <getopt.h>
 
 #include <grafo.hpp>
-
-#include <metodosBasicos.hpp>
+#include <bubbleSort.hpp>
+#include <selectionSort.hpp>
+#include <inserctionSort.hpp>
 #include <quickSort.hpp>
 #include <mergeSort.hpp>
 #include <heapSort.hpp>
