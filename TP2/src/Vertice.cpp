@@ -1,4 +1,4 @@
-#include <vertice.hpp>
+#include <Vertice.hpp>
 
 Vertice::Vertice() { 
     rotulo = -1;

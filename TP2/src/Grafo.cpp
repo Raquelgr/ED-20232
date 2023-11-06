@@ -1,4 +1,4 @@
-#include <grafo.hpp>
+#include <Grafo.hpp>
 
 Grafo::Grafo(int qtdVertices) {
     tamanho = qtdVertices;  

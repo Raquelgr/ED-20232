@@ -1,26 +1,15 @@
 #include <iostream>
-#include <sstream>
-#include <string>
-
 #include <getopt.h>
 
-#include <grafo.hpp>
-#include <bubbleSort.hpp>
-#include <selectionSort.hpp>
-#include <inserctionSort.hpp>
-#include <quickSort.hpp>
-#include <mergeSort.hpp>
-#include <heapSort.hpp>
+#include <Grafo.hpp>
+#include <BubbleSort.hpp>
+#include <SelectionSort.hpp>
+#include <InserctionSort.hpp>
+#include <QuickSort.hpp>
+#include <MergeSort.hpp>
+#include <HeapSort.hpp>
 
 using namespace std;
-
-#define BUBBLE 1
-#define SELECTION 2
-#define INSERCTION 3
-#define QUICK 4
-#define MERGE 5
-#define HEAP 6
-#define MINE 7
 
 void ordena(char metodoEscolhido, Vertice* itens, int tamanho) {
 	switch (metodoEscolhido) {
@@ -43,7 +32,7 @@ void ordena(char metodoEscolhido, Vertice* itens, int tamanho) {
 			HeapSort(itens, tamanho);
 			break;
 		case 'y':
-			metodoEscolhido = MINE;
+			//metodoEscolhido = MINE;
 			break;
 		default:
 			throw invalid_argument("OPCAO DE ORDENACAO INVALIDA!");

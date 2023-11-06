@@ -1,4 +1,4 @@
-#include <selectionSort.hpp>
+#include <SelectionSort.hpp>
 
 void SelectionSort(Vertice *vertices, int tamanho) { 
     int min;

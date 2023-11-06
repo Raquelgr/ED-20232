@@ -1,4 +1,4 @@
-#include <quickSort.hpp>
+#include <QuickSort.hpp>
 
 void Particao(int esq, int dir, int *i, int *j, Vertice *vertices) { 
     Vertice aux;

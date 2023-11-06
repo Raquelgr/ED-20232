@@ -1,4 +1,4 @@
-#include <bubbleSort.hpp>
+#include <BubbleSort.hpp>
 
 void BubbleSort(Vertice *vertices, int tamanho) {
     bool trocou;

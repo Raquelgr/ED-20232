@@ -1,4 +1,4 @@
-#include <inserctionSort.hpp>
+#include <InserctionSort.hpp>
 
 void InserctionSort(Vertice *vertices, int tamanho) {
     int j = 0;

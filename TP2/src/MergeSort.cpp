@@ -1,4 +1,4 @@
-#include <mergeSort.hpp>
+#include <MergeSort.hpp>
 
 void Merge(Vertice* vertices, int inicio, int meio, int fim) {
     int tamanhoEsq = meio - inicio + 1;

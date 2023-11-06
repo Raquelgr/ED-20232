@@ -1,13 +1,7 @@
 #ifndef SELECTIONSORT_HPP
 #define SELECTIONSORT_HPP
 
-#include <iostream>
-#include <sstream>
-#include <string>
-
-#include <vertice.hpp>
-
-using namespace std;
+#include <Vertice.hpp>
 
 void SelectionSort(Vertice *vertices, int tamanho);
 

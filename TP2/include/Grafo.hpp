@@ -1,11 +1,7 @@
 #ifndef GRAFO_HPP
 #define GRAFO_HPP
 
-#include <iostream>
-#include <sstream>
-#include <string>
-
-#include <vertice.hpp>
+#include <Vertice.hpp>
 
 class Grafo {
     public:
