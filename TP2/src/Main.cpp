@@ -8,7 +8,7 @@
 #include <QuickSort.hpp>
 #include <MergeSort.hpp>
 #include <HeapSort.hpp>
-#include <BorderSort.hpp>
+#include <PairSort.hpp>
 
 using namespace std;
 
@@ -33,7 +33,7 @@ void ordena(char metodoEscolhido, Vertice* itens, int tamanho) {
 			HeapSort(itens, tamanho);
 			break;
 		case 'y':
-			BorderSort(itens, tamanho);
+			PairSort(itens, tamanho);
 			break;
 		default:
 			throw invalid_argument("OPCAO DE ORDENACAO INVALIDA!");
