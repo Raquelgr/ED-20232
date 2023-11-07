@@ -2,7 +2,6 @@
 
 void BubbleSort(Vertice *vertices, int tamanho) {
     bool trocou;
-    Vertice aux;
     
     for (int i = 0; i < tamanho - 1; i++) {
         trocou = false;

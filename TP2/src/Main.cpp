@@ -4,10 +4,11 @@
 #include <Grafo.hpp>
 #include <BubbleSort.hpp>
 #include <SelectionSort.hpp>
-#include <InserctionSort.hpp>
+#include <InsertionSort.hpp>
 #include <QuickSort.hpp>
 #include <MergeSort.hpp>
 #include <HeapSort.hpp>
+#include <BorderSort.hpp>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ void ordena(char metodoEscolhido, Vertice* itens, int tamanho) {
       		SelectionSort(itens, tamanho);
 			break;
 		case 'i':
-      		InserctionSort(itens, tamanho);
+      		InsertionSort(itens, tamanho);
 			break;
 		case 'q':
       		QuickSort(itens, tamanho);
@@ -32,7 +33,7 @@ void ordena(char metodoEscolhido, Vertice* itens, int tamanho) {
 			HeapSort(itens, tamanho);
 			break;
 		case 'y':
-			//metodoEscolhido = MINE;
+			BorderSort(itens, tamanho);
 			break;
 		default:
 			throw invalid_argument("OPCAO DE ORDENACAO INVALIDA!");
@@ -65,19 +66,17 @@ void uso(int numVertices, char metodoEscolhido) {
 	}
 
 	bool temColorocaoGulosa = grafo->VerificarColoracaoGulosa();
+	cout << temColorocaoGulosa;
 
   	if (temColorocaoGulosa) {
 		ordena(metodoEscolhido, grafo->vertices, grafo->tamanho);
-		cout << temColorocaoGulosa << " ";
 
 		for (int i = 0; i < numVertices; i++) {
-      		cout << grafo->vertices[i].rotulo << " ";
+      		cout << " " << grafo->vertices[i].rotulo;
     	}
+  	} 
 
-		cout << endl;
-  	} else {
-		cout << temColorocaoGulosa << endl;
-	}
+	cout << endl;
 }
 
 int main(int argc, char* argv[]) try {

@@ -1,6 +1,6 @@
-#include <InserctionSort.hpp>
+#include <InsertionSort.hpp>
 
-void InserctionSort(Vertice *vertices, int tamanho) {
+void InsertionSort(Vertice *vertices, int tamanho) {
     int j = 0;
     Vertice aux;
 

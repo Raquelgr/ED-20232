@@ -14,5 +14,4 @@ void SelectionSort(Vertice *vertices, int tamanho) {
 
         Troca(&vertices[i], &vertices[min]); 
     }
-
 }
