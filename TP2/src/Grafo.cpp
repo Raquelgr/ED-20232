@@ -37,27 +37,28 @@ bool Grafo::VerificarColoracaoGulosa() {
         vertice = vertices[i];
 
         if (vertice.cor > 1) {
-            int qtdDeCoresNecessarias = (vertice.cor) - 1;
+            int qtdDeCoresNecessarias = (vertice.cor) - 1; //É necessário que ele tenha todas as cores abaixo da dele.
             int contador = 0;
 
+            /* Caso a quantidade de vizinhos seja menor que as cores necessárias, já não é possível ter a coloração gulosa */
             if (vertice.qtdVizinhos < qtdDeCoresNecessarias) { 
                 return false;
             }
 
             int aux = qtdDeCoresNecessarias;
 
-            for (int aux = qtdDeCoresNecessarias; aux > 0; aux--) {
-                for (int j = 0; j < vertice.qtdVizinhos; j++) {
+            for (int aux = qtdDeCoresNecessarias; aux > 0; aux--) { // Para cada cor menor, é necessário ver se algum vizinho à possui
+                for (int j = 0; j < vertice.qtdVizinhos; j++) { // Percorre todos os vizinhos procurando a cor
                     int vizinho = vertice.vizinhos[j];
 
                     if (vertices[vizinho].cor == aux) {
-                        contador++;
+                        contador++; // Caso ache, incremeta o contador auxiliar, break para voltar ao for das cores.
                         break;
                     }
                 }
             }
 
-            if (contador < qtdDeCoresNecessarias) {
+            if (contador < qtdDeCoresNecessarias) { //Se o contador não atingiu as cores necessárias, a coloração não é gulosa!
                 return false;
             }
         }

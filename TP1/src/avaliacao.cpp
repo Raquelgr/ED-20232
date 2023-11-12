@@ -61,9 +61,9 @@ bool Avaliacao::CaracteresValidos(string formula) {
 string Avaliacao::ConverterInfixaParaPosfixa(string formula, string valoracao) {    
     string formulaLimpa = RemoverEspacos(formula);
 
-    if (!ParentesesBalanceados(formulaLimpa)) throw invalid_argument("Os parenteses estao desbalanceados!");
-    if (!UltimoCaractereValido(formulaLimpa)) throw invalid_argument("O ultimo caractere nao e valido!");
-    if (!CaracteresValidos(formulaLimpa)) throw invalid_argument("A formula contem um caracter nao permitido!");
+    if (!ParentesesBalanceados(formulaLimpa)) throw std::invalid_argument("Os parenteses estao desbalanceados!");
+    if (!UltimoCaractereValido(formulaLimpa)) throw std::invalid_argument("O ultimo caractere nao e valido!");
+    if (!CaracteresValidos(formulaLimpa)) throw std::invalid_argument("A formula contem um caracter nao permitido!");
 
     Pilha* pilhaDeConversao = new Pilha();
     string posfixa = "";
@@ -144,7 +144,7 @@ char Avaliacao::Avaliar(string formula, string valoracao) {
             pilhaDeAvaliacao->Empilha(caracter);
         } else if (IsNot(caracter) && !pilhaDeAvaliacao->Vazia()) {
             char valorDesempilhado = pilhaDeAvaliacao->Desempilha(); 
-            if (valorDesempilhado != '1' && valorDesempilhado != '0') throw invalid_argument("Valor invalido!");
+            if (valorDesempilhado != '1' && valorDesempilhado != '0') throw std::invalid_argument("Valor invalido!");
 
             int resultadoNot = !(valorDesempilhado - 48);
             char resultadoConvertido = to_string(resultadoNot)[0];
@@ -154,12 +154,12 @@ char Avaliacao::Avaliar(string formula, string valoracao) {
             char primeiroValorDesempilhado = pilhaDeAvaliacao->Desempilha();
 
             // Confere se é um digito, caso seja um operador retorna erro
-            if (primeiroValorDesempilhado != '1' && primeiroValorDesempilhado != '0') throw invalid_argument("Valor invalido!");
+            if (primeiroValorDesempilhado != '1' && primeiroValorDesempilhado != '0') throw std::invalid_argument("Valor invalido!");
 
             char segundoValorDesempilhado = pilhaDeAvaliacao->Desempilha(); 
             
             // Confere se é um digito, caso seja um operador retorna erro 
-            if (segundoValorDesempilhado != '1' && segundoValorDesempilhado != '0') throw invalid_argument("Valor invalido!");
+            if (segundoValorDesempilhado != '1' && segundoValorDesempilhado != '0') throw std::invalid_argument("Valor invalido!");
             
             // Converte para inteiro para facilitar a operação, já que sendo inteiro realiza a função básica booleana que não precisa de implementação específica
             int primeiroValor = primeiroValorDesempilhado - 48;

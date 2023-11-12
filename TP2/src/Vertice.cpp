@@ -15,10 +15,11 @@ void Troca(Vertice* a, Vertice* b) {
     *b = aux;
 }
 
+/* O método EhMenor é usado apenas para os algortimos não estáveis, em que é necessário analisar o empate das cores */
 bool EhMenor(Vertice a, Vertice b) {
     if (a.cor < b.cor) {
         return true;
-    } else if (a.cor == b.cor) { 
+    } else if (a.cor == b.cor) {
         if (a.rotulo < b.rotulo) { 
             return true;
         }
@@ -27,6 +28,7 @@ bool EhMenor(Vertice a, Vertice b) {
     return false;
 }
 
+/* O método EhMaior é usado apenas para os algortimos não estáveis, em que é necessário analisar o empate das cores */
 bool EhMaior(Vertice a, Vertice b) {
     if (a.cor > b.cor) {
         return true;

@@ -1,6 +1,10 @@
 #include <MergeSort.hpp>
 
 void Merge(Vertice* vertices, int inicio, int meio, int fim) {
+    if (inicio < 0 || meio < 0 || fim < 0) {
+        throw std::invalid_argument("Indice invalido!");
+    } 
+
     int tamanhoEsq = meio - inicio + 1;
     int tamanhoDir = fim - meio; 
 
@@ -20,7 +24,7 @@ void Merge(Vertice* vertices, int inicio, int meio, int fim) {
     int index = inicio;
 
     while (indexEsq < tamanhoEsq && indexDir < tamanhoEsq) {
-        if (EhMenor(vetorEsq[indexEsq], vetorDir[indexDir])) {
+        if (vetorEsq[indexEsq].cor < vetorDir[indexDir].cor) {
             vertices[index] = vetorEsq[indexEsq];
             indexEsq++;
         } else {
@@ -50,6 +54,10 @@ void Merge(Vertice* vertices, int inicio, int meio, int fim) {
 }
 
 void Ordena(Vertice *vertices, int inicio, int fim) { 
+    if (inicio < 0 || fim < 0) {
+        throw std::invalid_argument("Indice invalido!");
+    } 
+
     if (inicio >= fim) return;
  
     int meio = inicio + (fim - inicio) / 2;
@@ -61,5 +69,9 @@ void Ordena(Vertice *vertices, int inicio, int fim) {
 }
 
 void MergeSort(Vertice *vertices, int tamanho) { 
+    if (tamanho <= 0) {
+        throw std::invalid_argument("Tamanho invalido!");
+    } 
+
     Ordena(vertices, 0, tamanho-1); 
 }

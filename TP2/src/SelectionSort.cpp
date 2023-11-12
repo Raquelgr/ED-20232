@@ -1,6 +1,10 @@
 #include <SelectionSort.hpp>
 
 void SelectionSort(Vertice *vertices, int tamanho) { 
+    if (tamanho <= 0) {
+        throw std::invalid_argument("Tamanho invalido!");
+    }
+
     int min;
 
     for (int i = 0; i < tamanho - 1; i++) {

@@ -1,6 +1,10 @@
 #ifndef VERTICE_HPP
 #define VERTICE_HPP
 
+#include <stdexcept>
+
+using namespace std;
+
 class Vertice {
     private:
         int qtdVizinhos;

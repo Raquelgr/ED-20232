@@ -1,6 +1,10 @@
 #include <InsertionSort.hpp>
 
 void InsertionSort(Vertice *vertices, int tamanho) {
+    if (tamanho <= 0) {
+        throw std::invalid_argument("Tamanho invalido!");
+    } 
+
     int j = 0;
     Vertice aux;
 
@@ -8,7 +12,7 @@ void InsertionSort(Vertice *vertices, int tamanho) {
         aux = vertices[i];
         j = i - 1;
 
-        while (j >= 0 && EhMenor(aux, vertices[j])) {
+        while (j >= 0 && aux.cor < vertices[j].cor) {
             vertices[j + 1] = vertices[j];
             j--;
         }

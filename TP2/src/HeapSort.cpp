@@ -1,6 +1,10 @@
 #include <HeapSort.hpp>
 
 void Heapify(Vertice* vertices, int tamanho, int index) { 
+    if (index < 0) {
+        throw std::invalid_argument("Indice do vetor invalido!");
+    }
+
     int maior = index; 
     int esq = 2 * index + 1;  
     int dir = 2 * index + 2;
@@ -21,6 +25,10 @@ void Heapify(Vertice* vertices, int tamanho, int index) {
 } 
  
 void HeapSort(Vertice* vertices, int tamanho) {     
+    if (tamanho <= 0) {
+        throw std::invalid_argument("Tamanho invalido!");
+    }
+
     for (int i = tamanho / 2 - 1; i >= 0; i--) {
         Heapify(vertices, tamanho, i); 
     }

@@ -1,6 +1,10 @@
 #include <QuickSort.hpp>
 
 void Particao(int esq, int dir, int *i, int *j, Vertice *vertices) { 
+    if (esq < 0 || dir < 0) {
+        throw std::invalid_argument("Indice invalido!");
+    } 
+
     Vertice aux;
     *i = esq; 
     *j = dir;
@@ -21,6 +25,10 @@ void Particao(int esq, int dir, int *i, int *j, Vertice *vertices) {
 }
 
 void Ordena(int esq, int dir, Vertice *vertices) { 
+    if (esq < 0 || dir < 0) {
+        throw std::invalid_argument("Indice invalido!");
+    } 
+
     int i = 0;
     int j = 0;
   
@@ -30,5 +38,9 @@ void Ordena(int esq, int dir, Vertice *vertices) {
 }
 
 void QuickSort(Vertice *vertices, int tamanho) { 
+    if (tamanho <= 0) {
+        throw std::invalid_argument("Tamanho invalido!");
+    } 
+
     Ordena(0, tamanho-1, vertices); 
 }

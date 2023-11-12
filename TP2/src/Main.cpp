@@ -36,7 +36,7 @@ void ordena(char metodoEscolhido, Vertice* itens, int tamanho) {
 			PairSort(itens, tamanho);
 			break;
 		default:
-			throw invalid_argument("OPCAO DE ORDENACAO INVALIDA!");
+			throw std::invalid_argument("OPCAO DE ORDENACAO INVALIDA!");
 			break;
 	}
 }
@@ -84,6 +84,7 @@ int main(int argc, char* argv[]) try {
 	int numVertices = 0;
 
 	cin >> metodoEscolhido >> numVertices;
+
 	uso(numVertices, metodoEscolhido);
 
   	return 0;
