@@ -24,7 +24,7 @@ void Merge(Vertice* vertices, int inicio, int meio, int fim) {
     int index = inicio;
 
     while (indexEsq < tamanhoEsq && indexDir < tamanhoEsq) {
-        if (vetorEsq[indexEsq].cor < vetorDir[indexDir].cor) {
+        if (vetorEsq[indexEsq].cor <= vetorDir[indexDir].cor) {
             vertices[index] = vetorEsq[indexEsq];
             indexEsq++;
         } else {
