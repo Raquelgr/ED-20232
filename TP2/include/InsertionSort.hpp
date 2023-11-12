@@ -3,9 +3,6 @@
 
 #include <stdexcept>
 
-#include <memlog.h>
-#include <log.h>
-
 #include <Vertice.hpp>
 
 using namespace std;
