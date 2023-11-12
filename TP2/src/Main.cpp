@@ -78,7 +78,7 @@ void uso(int numVertices, char metodoEscolhido) {
 
 	cout << endl;
 
-	grafo->~Grafo();
+	delete grafo;
 }
 
 int main(int argc, char* argv[]) try {

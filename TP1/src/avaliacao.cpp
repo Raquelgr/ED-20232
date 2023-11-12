@@ -184,5 +184,7 @@ char Avaliacao::Avaliar(string formula, string valoracao) {
     
     pilhaDeAvaliacao->Limpa();
 
+    delete pilhaDe
+
     return resposta;
 }

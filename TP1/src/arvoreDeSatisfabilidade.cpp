@@ -144,6 +144,7 @@ string ArvoreDeSatisfabilidade::VerificarSatisfablidade(string formula, string v
     string resposta = arvore->raiz->item; 
     
     arvore->Limpa();
-
+    delete arvore;
+    
     return resposta;
 }
