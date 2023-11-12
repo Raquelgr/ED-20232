@@ -15,31 +15,24 @@ using namespace std;
 void ordena(char metodoEscolhido, Vertice* itens, int tamanho) {
 	switch (metodoEscolhido) {
 		case 'b':
-			defineFaseMemLog(1);
       		BubbleSort(itens, tamanho);
 			break;
 		case 's':
-      		defineFaseMemLog(1);
-			SelectionSort(itens, tamanho);
+      		SelectionSort(itens, tamanho);
 			break;
 		case 'i':
-      		defineFaseMemLog(1);
-			InsertionSort(itens, tamanho);
+      		InsertionSort(itens, tamanho);
 			break;
 		case 'q':
-		    defineFaseMemLog(1);
       		QuickSort(itens, tamanho);
 			break;
 		case 'm':
-			defineFaseMemLog(1);
       		MergeSort(itens, tamanho);
 			break;
 		case 'p':
-		    defineFaseMemLog(1);
 			HeapSort(itens, tamanho);
 			break;
 		case 'y':
-		    defineFaseMemLog(1);
 			PairSort(itens, tamanho);
 			break;
 		default:
@@ -84,26 +77,15 @@ void uso(int numVertices, char metodoEscolhido) {
   	} 
 
 	cout << endl;
-
-	grafo->~Grafo();
 }
 
 int main(int argc, char* argv[]) try {
-	const char* log_mem = "log.txt";
-
 	char metodoEscolhido;
 	int numVertices = 0;
 
 	cin >> metodoEscolhido >> numVertices;
-	
-	iniciaMemLog(log_mem);
-    ativaMemLog();
-    defineFaseMemLog(0);
 
 	uso(numVertices, metodoEscolhido);
-
-	desativaMemLog();
-    finalizaMemLog();
 
   	return 0;
 }  catch (const std::exception& e) {
