@@ -1,4 +1,4 @@
-CC := g++
+CC := g++ -pg
 CCFLAGS := -O3 -std=c++11 -fPIC
 LDFLAGS := 
 CCOBJFLAGS := $(CCFLAGS) -c
