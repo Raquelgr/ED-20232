@@ -1,20 +1,12 @@
 #include <InsertionSort.hpp>
 
 void InsertionSort(Vertice *vertices, int tamanho) {
-    const char* log_mem = "log_insertionSort.txt";
-
-    iniciaMemLog(log_mem);
-    ativaMemLog();
-    defineFaseMemLog(0);
-
     if (tamanho <= 0) {
         throw std::invalid_argument("Tamanho invalido!");
     } 
 
     int j = 0;
     Vertice aux;
-
-    defineFaseMemLog(1);
 
     
     for (int i = 1; i < tamanho; i++) {
@@ -29,7 +21,4 @@ void InsertionSort(Vertice *vertices, int tamanho) {
 
         escrita(vertices, j + 1, 1) = aux;
     } 
-
-    desativaMemLog();
-    finalizaMemLog();
 }

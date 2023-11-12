@@ -23,7 +23,7 @@ void PairSort(Vertice *vertices, int tamanho) {
         /* Compara as posições pares adjacentes de indice par */
         for (int i = 1; i < tamanho - 1; i+=2) {
 
-             /* Se o vertice da primeira posição for maior que o da segunda, realiza a troca e marca que ainda não está ordenado */
+            /* Se o vertice da primeira posição for maior que o da segunda, realiza a troca e marca que ainda não está ordenado */
             if (vertices[i].cor > vertices[i+1].cor) {
                 Troca(&vertices[i+1], &vertices[i]);
                 ordenado = false;
