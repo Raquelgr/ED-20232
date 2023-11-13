@@ -1,5 +1,6 @@
 #include <iostream>
 #include <getopt.h>
+#include <sys/resource.h>
 
 #include <Grafo.hpp>
 #include <BubbleSort.hpp>
@@ -88,6 +89,20 @@ int main(int argc, char* argv[]) try {
 	cin >> metodoEscolhido >> numVertices;
 
 	uso(numVertices, metodoEscolhido);
+
+	/* Contagem de tempo */
+	// double utime, stime, total_time; // contagem de tempo
+	// struct rusage resources;
+    // int rc;
+
+	// if((rc = getrusage(RUSAGE_SELF, &resources)) != 0)
+    //     perror("getrusage failed");
+    // utime = (double) resources.ru_utime.tv_sec + 1.e-6 * (double) resources.ru_utime.tv_usec;
+    // stime = (double) resources.ru_stime.tv_sec + 1.e-6 * (double) resources.ru_stime.tv_usec;
+    // total_time = utime+stime;
+	
+    // cout << "User time: " << utime << " System time: " << stime << " Total time: " << total_time << endl;
+
 
   	return 0;
 }  catch (const std::exception& e) {
