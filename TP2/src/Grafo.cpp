@@ -11,7 +11,7 @@ Grafo::Grafo(int qtdVertices) {
 
 Grafo::~Grafo() { 
     for (int i = 0; i < tamanho; i++) {
-        delete vertices[i].vizinhos;
+        delete[] vertices[i].vizinhos;
     }
 
     delete[] vertices;
