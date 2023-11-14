@@ -63,9 +63,9 @@ typedef struct opt{
 } opt_t;
 
 typedef struct sortperf{
-  int cmp;
-  int move;
-  int calls;
+  long int cmp;
+  long int move;
+  long int calls;
 } sortperf_t;
 
 void resetcounter(sortperf_t * s){
@@ -103,7 +103,7 @@ char * printsortperf(sortperf_t * s, char * str, char * pref){
 // Entrada: s, pref
 // Saida: str
 
- sprintf(str,"%s cmp %d move %d calls %d", pref, s->cmp, s->move, s->calls); 
+ sprintf(str,"%s cmp %ld move %ld calls %ld", pref, s->cmp, s->move, s->calls); 
  return str;
 }
 
@@ -138,56 +138,82 @@ void swap(int *xp, int *yp, sortperf_t *s){
 }
 
 // heapsort
-void heapify(int * A, int l, int r, sortperf_t *s){
-    int maior = r; 
-    int esq = 2 * r + 1;  
-    int dir = 2 * r + 2;
+void heapify(int * A, int n, int i, sortperf_t *s){
+	inccalls(s,1);
+	
+	int aux;
+  	int esq = n;  
+  	int dir = esq * 2;
 
-    if (esq < l && A[esq] < A[maior]) {
-        maior = esq;
-    }
+	aux = A[esq];
+	incmove(s,1);
 
-    if (dir < l && A[dir] < A[maior]) {
-        maior = dir;
-    } 
+	while (dir <= i) {
+		inccmp(s,1);
 
-    if (maior != r) { 
-        swap(&A[r], &A[maior], s);
+		if (dir < i) {
+			inccmp(s,1);
+			if (A[dir] < A[dir + 1]) {
+				dir++;
+			}
+		}
 
-        heapify(A, l, maior, s); 
-    } 
+		if (aux >= A[dir]) {
+			break;
+		}
+
+		inccmp(s,1);
+
+		A[esq] = A[dir];
+		esq = dir;
+		dir = esq * 2;
+		incmove(s,1);
+	}
+
+	A[esq] = aux;
+	incmove(s,1);
 }
 
 void buildheap(int *A, int n, sortperf_t * s) {
-    for (int i = n / 2 - 1; i >= 0; i--) {
-        heapify(A, n, i, s); 
-    }
+	inccalls(s,1);
+
+	int esq = n / 2 + 1;
+
+	while (esq > 1) {
+		inccmp(s,1);
+
+		esq--;
+    	heapify(A, n, esq, s); 
+	}
 }
 
 void heapSort(int *A, int n, sortperf_t * s) {
-    buildheap(A, n, s); 
+  	inccalls(s,1);
+
+	buildheap(A, n, s); 
+
+	int esq = 1;
+	int dir = n;
     
-    inccalls(s,1);
-    for (int i = n - 1; i >= 0; i--) {
-        inccmp(s,1);
-        
-        swap(&A[i], &A[0], s);    
-        heapify(A, i, 0, s); 
-    }
+	while (dir > 1) {
+		inccmp(s,1);
+
+		swap(&A[1], &A[dir], s);    
+		dir--;
+    	heapify(A, esq, dir, s); 
+	}
+
 }
 
-
 // recursive selection sort
-void recursiveSelectionSort(int arr[], int l, int r, sortperf_t * s)
-{
+void recursiveSelectionSort(int arr[], int l, int r, sortperf_t * s) {
     // find the minimum element in the unsorted subarray `[i…n-1]`
     // and swap it with `arr[i]`
     int min = l;
     inccalls(s,1);
-    for (int j = l + 1; j <= r; j++)
-    {
+    for (int j = l + 1; j <= r; j++) {
         // if `arr[j]` is less, then it is the new minimum
-	inccmp(s,1);
+		inccmp(s,1);
         if (arr[j] < arr[min]) {
             min = j;    // update the index of minimum element
         }
@@ -204,39 +230,48 @@ void recursiveSelectionSort(int arr[], int l, int r, sortperf_t * s)
 
 // selection sort
 void selectionSort(int arr[], int l, int r, sortperf_t * s) { 
-    int min = l;
-    int aux;
+	inccalls(s,1);
+	
+    for (int i = l; i < r; i++) {
+		int min = i;
 
-    inccalls(s,1);
-    for (int i = 0; i < r - 1; i++) {
-        inccmp(s,1);
-        for (int j = i + 1; j < r; j++) {
+        for (int j = i + 1; j <= r; j++) {
+
+			inccmp(s,1);
             if (arr[j] < arr[min]) {
                 min = j;
             }
         }
 
-        swap(&arr[i], &arr[min], s);
+		if (min != i) {
+			swap(&arr[i], &arr[min], s);
+		}
     }
 }
 
 //insertion sort
 void insertionSort(int v[], int l, int r, sortperf_t * s) {
-    int j = l;
+    inccalls(s,1);
     int aux;
 
-    inccalls(s,1);
-    for (int i = 1; i < r; i++) {
+    for (int i = l + 1; i <= r; i++) {
         aux = v[i];
-        j = i - 1;
+		incmove(s,1);
 
-        inccmp(s,1);
-        while (j >= 0 && aux < v[j]) {
+        int j = i - 1;
+
+        while (j >= l && aux < v[j]) {
+			inccmp(s,1);
+
             v[j + 1] = v[j];
             j--;
+			incmove(s,1);
         }
 
+		inccmp(s,1);
+
         v[j + 1] = aux;
+		incmove(s,1);
     } 
 }
 
@@ -252,26 +287,143 @@ int median (int a, int b, int c) {
 
 // quicksort partition using median of 3
 void partition3(int * A, int l, int r, int *i, int *j, sortperf_t *s) {
+    inccalls(s,1);
+
+	int aux = median(A[l], A[(l + r) / 2], A[r]);
+
+    *i = l;
+    *j = r;
+
+    do {	
+		inccmp(s,1);
+        while (A[*i] < aux) {
+            (*i)++;
+            inccmp(s, 1); 
+        }
+
+		inccmp(s,1);
+        while (A[*j] > aux) {
+            (*j)--;
+            inccmp(s, 1); 
+        }
+
+        if (*i <= *j) {
+            swap(&A[*i], &A[*j], s);
+            (*i)++;
+            (*j)--;
+        }
+
+    } while (*i <= *j);
 }
 
 // standard quicksort partition
 void partition(int * A, int l, int r, int *i, int *j, sortperf_t *s) {
+	inccalls(s,1);
+
+	int aux = A[l + (r - l)/2];
+ 	*i = l; 
+    *j = r;
+
+	do { 	
+		inccmp(s,1);
+		while (A[*i] < aux) {
+			inccmp(s,1);
+			(*i)++;
+		}
+		
+		inccmp(s,1);
+        while (A[*j] > aux) {
+			inccmp(s,1);
+			(*j)--;
+		}
+
+        if (*i <= *j) { 
+            swap(&A[*i], &A[*j], s);
+
+            (*i)++; (*j)--;
+        }
+
+    } while (*i <= *j);	
 }
 
 // standard quicksort
 void quickSort(int * A, int l, int r, sortperf_t *s) { 
+	inccalls(s,1);
+	
+	int i = 0;
+    int j = 0;
+	
+	partition(A, l, r, &i, &j, s);
+
+	if (l < j) {
+		quickSort(A, l, j, s);
+	}
+
+	if (i < r) {
+		quickSort(A, i, r, s);
+	}
 }
 
 // quicksort with median of 3
 void quickSort3(int * A, int l, int r, sortperf_t *s) { 
+	inccalls(s,1);
+
+	int i = 0;
+  int j = 0;
+	
+	partition3(A, l, r, &i, &j, s);
+
+	if (l < j) {
+		quickSort3(A, l, j, s);
+	}
+
+	if (i < r) {
+		quickSort3(A, i, r, s);
+	}    
 }
 
 // quicksort with insertion for small partitions
 void quickSortIns(int * A, int l, int r, sortperf_t *s) { 
+	if (r - l <= 50) {
+		insertionSort(A, l, r, s);
+	} else {
+		inccalls(s,1);
+
+		int i = 0;
+		int j = 0;
+
+		partition(A, l, r, &i, &j, s);
+
+		if (l < j) {
+			quickSortIns(A, l, j, s);
+		}
+
+		if (i < r) {
+			quickSortIns(A, i, r, s);
+		}  
+	}
 }
 
 // quicksort with insertion for small partitions and median of 3
 void quickSort3Ins(int * A, int l, int r, sortperf_t *s) { 
+	if (r - l <= 50) {
+		insertionSort(A, l, r, s);
+	} else {
+		inccalls(s, 1);
+
+		int i = 0;
+    	int j = 0;
+
+		partition3(A, l, r, &i, &j, s);
+
+		if (l < j) {
+			quickSort3Ins(A, l, j, s);
+		}
+
+		if (i < r) {
+			quickSort3Ins(A, i, r, s);
+		}   
+	} 
 }
 
 void uso()

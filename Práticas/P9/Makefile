@@ -1,6 +1,6 @@
 CC := g++
-CCFLAGS := -O3 -std=c++11 -fPIC -pg
-LDFLAGS := -pg
+CCFLAGS := -O3 -std=c++11 -fPIC
+LDFLAGS :=
 CCOBJFLAGS := $(CCFLAGS) -c
 
 # path macros
