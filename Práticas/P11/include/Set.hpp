@@ -25,7 +25,6 @@ class StringSet{
 
         int Hash(string s);
         void Rehash(int pos);
-        bool Contem(string s);
 };
 
 void BubbleSort(string *palavras, int tamanho);

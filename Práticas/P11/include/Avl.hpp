@@ -8,7 +8,6 @@
 
 using namespace std;
 
-
 class AVLNode {
     protected:
         string palavra;

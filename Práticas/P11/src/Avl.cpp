@@ -60,6 +60,10 @@ AVLNode* AVLTree::RotacaoEsquerda(AVLNode* x) {
     return y;
 }
 
+void AVLTree::Inserir(string palavra, int pagina) {
+    raiz = Inserir(raiz, palavra, pagina);
+}
+
 AVLNode* AVLTree::Inserir(AVLNode* no, string palavra, int pagina) {
     if (no == nullptr) {
         AVLNode* novoNo = new AVLNode(palavra);
@@ -104,6 +108,10 @@ AVLNode* AVLTree::Inserir(AVLNode* no, string palavra, int pagina) {
     return no;
 }
 
+void AVLTree::Imprimir() {
+    Imprimir(raiz);
+}
+
 void AVLTree::Imprimir(AVLNode* no) {
     if (no != nullptr) {
         Imprimir(no->esquerda);
@@ -113,12 +121,4 @@ void AVLTree::Imprimir(AVLNode* no) {
 
         Imprimir(no->direita);
     }
-}
-
-void AVLTree::Inserir(string palavra, int pagina) {
-    raiz = Inserir(raiz, palavra, pagina);
-}
-
-void AVLTree::Imprimir() {
-    Imprimir(raiz);
 }
