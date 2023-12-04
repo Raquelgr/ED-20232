@@ -6,7 +6,7 @@
 using namespace std;
 
 struct Matriz {
-    int m[2][2];
+    long long m[2][2];
 };
 
 class SegTree {
