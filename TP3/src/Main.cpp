@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) try {
 
             // Verifica se os instante de nascimento e morte são válidos
             if (nascimento > morte) {
-            throw std::invalid_argument("O instante de nascimento deve ser menor que o instante de morte!");
+                throw std::invalid_argument("O instante de nascimento deve ser menor que o instante de morte!");
             }
 
             Matriz matrizDoIntervalo = arvoreDeSegmentacao->Consulta(nascimento, morte);
