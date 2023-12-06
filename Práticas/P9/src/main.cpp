@@ -142,17 +142,17 @@ void heapify(int * A, int n, int i, sortperf_t *s){
 	inccalls(s,1);
 	
 	int aux;
-  	int esq = n;  
-  	int dir = esq * 2;
+  int esq = n;  
+  int dir = esq * 2;
 
 	aux = A[esq];
-	incmove(s,1);
+  incmove(s,1);
 
 	while (dir <= i) {
-		inccmp(s,1);
+    inccmp(s,1);
 
 		if (dir < i) {
-			inccmp(s,1);
+      inccmp(s,1);
 			if (A[dir] < A[dir + 1]) {
 				dir++;
 			}
@@ -162,16 +162,14 @@ void heapify(int * A, int n, int i, sortperf_t *s){
 			break;
 		}
 
-		inccmp(s,1);
-
 		A[esq] = A[dir];
 		esq = dir;
 		dir = esq * 2;
-		incmove(s,1);
+    incmove(s,1);
 	}
 
 	A[esq] = aux;
-	incmove(s,1);
+  incmove(s,1);
 }
 
 void buildheap(int *A, int n, sortperf_t * s) {
@@ -179,28 +177,24 @@ void buildheap(int *A, int n, sortperf_t * s) {
 
 	int esq = n / 2 + 1;
 
-	while (esq > 1) {
-		inccmp(s,1);
-
-		esq--;
-    	heapify(A, n, esq, s); 
+	while (esq > 1) {		
+    esq--;
+    heapify(A, esq, n, s); 
 	}
 }
 
 void heapSort(int *A, int n, sortperf_t * s) {
-  	inccalls(s,1);
+  inccalls(s,1);
 
 	buildheap(A, n, s); 
 
 	int esq = 1;
 	int dir = n;
-    
+  
 	while (dir > 1) {
-		inccmp(s,1);
-
 		swap(&A[1], &A[dir], s);    
 		dir--;
-    	heapify(A, esq, dir, s); 
+    heapify(A, esq, dir, s); 
 	}
 
 }
@@ -233,46 +227,45 @@ void selectionSort(int arr[], int l, int r, sortperf_t * s) {
 	inccalls(s,1);
 	
     for (int i = l; i < r; i++) {
-		int min = i;
+		  int min = i;
 
-        for (int j = i + 1; j <= r; j++) {
-
-			inccmp(s,1);
-            if (arr[j] < arr[min]) {
-                min = j;
-            }
+      for (int j = i + 1; j <= r; j++) {
+			  inccmp(s,1);
+        if (arr[j] < arr[min]) {
+          min = j;
         }
+      }
 
-		if (min != i) {
-			swap(&arr[i], &arr[min], s);
-		}
+      if (min != i) {
+        swap(&arr[i], &arr[min], s);
+		  }
     }
 }
 
 //insertion sort
 void insertionSort(int v[], int l, int r, sortperf_t * s) {
-    inccalls(s,1);
-    int aux;
+  inccalls(s,1);
+  int aux;
 
-    for (int i = l + 1; i <= r; i++) {
-        aux = v[i];
-		incmove(s,1);
+  for (int i = l + 1; i <= r; i++) {
+    aux = v[i];
+    incmove(s,1);
 
-        int j = i - 1;
+    int j = i - 1;
 
-        while (j >= l && aux < v[j]) {
-			inccmp(s,1);
+    while (j >= l && aux < v[j]) {
+      inccmp(s,1);
 
-            v[j + 1] = v[j];
-            j--;
-			incmove(s,1);
-        }
+      v[j + 1] = v[j];
+      j--;
+      incmove(s,1);
+    }
 
-		inccmp(s,1);
+    inccmp(s,1);
 
-        v[j + 1] = aux;
-		incmove(s,1);
-    } 
+    v[j + 1] = aux;
+    incmove(s,1);
+  } 
 }
 
 // median of 3 integers
